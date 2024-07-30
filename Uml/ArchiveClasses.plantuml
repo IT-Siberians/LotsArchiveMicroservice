@@ -1,0 +1,164 @@
+@startuml test_name
+
+set namespaceSeparator ::
+
+skinparam classAttributeIconSize 0
+skinparam genericDisplay old
+
+abstract class LotsArchive.Domain::ValueObjects::ValueObject<T> {
+  # _value: T
+  + GetValue(): T
+  + Equals(Object object)
+  + GetHashCode(): int
+}
+
+class LotsArchive.Domain::ValueObjects::Name {
+  + Name(value: string)
+}
+
+class LotsArchive.Domain::ValueObjects::Money {
+  + Money(value: decimal)
+}
+
+interface LotsArchive.Domain::Entities::IEntity {
+  + GetId(): Guid
+}
+
+class LotsArchive.Domain::Entities::User {
+  # _id: Guid
+  # _username: Name
+  + GetId(): Guid
+  + GetUsername(): Name
+}
+
+class LotsArchive.Domain::Entities::Buyer {
+  - _boughtLots: IList<RepurchasedLot>
+  # Buyer()
+  + Buyer(id: Guid, username: Name, boughtLots: IList<RepurchasedLot>)
+  + AddRepurchasedLot(lot: RepurchasedLot): void
+  + GetBoughtLots(): IList<RepurchasedLot>
+}
+
+class LotsArchive.Domain::Entities::Seller {
+  - _soldLots: IList<RepurchasedLot>
+  - _withdrawnLots: IList<WithdrawnLot>
+  - _unpurchasedLots: IList<Lot>
+  # Seller()
+  + Seller(id: Guid, username: Name, soldLots: IList<RepurchasedLot>, withdrawnLots: IList<WithdrawnLot>, unpurchasedLots: IList<Lot>)
+  + AddWithdrawnLot(lot: WithdrawnLot): void
+  + GetSoldLots(): IList<RepurchasedLot>
+  + GetWithdrawnLots(): IList<WithdrawnLot>
+  + GetUnpurchasedLots(): IList<Lot>
+}
+
+class LotsArchive.Domain::Entities::Administrator {
+  - _withdrawnLots: IList<WithdrawnLot>
+  # Administrator()
+  + Administrator(id: Guid, username: Name, withdrawnLots: IList<WithdrawnLot>)
+  + AddWithdrawnLot(lot: WithdrawnLot): void
+  + GetWithdrawnLots(): IList<WithdrawnLot>
+}
+
+class LotsArchive.Domain::Services::AdministratorService {
+  + GetRepurchasedLots(): IList<RepurchasedLot>
+  + GetWithdrawnLots(): IList<WithdrawnLot>
+  + GetUnpurchasedLots(): IList<Lot>
+  + GetBuyerRepurchasedLots(buyerId: Guid): IList<RepurchasedLot>
+  + GetSellerRepurchasedLots(sellerId: Guid): IList<RepurchasedLot>
+  + GetSellerWithdrawnLots(sellerId: Guid): IList<WithdrawnLot>
+  + GetSellerUnpurchasedLots(sellerId: Guid): IList<Lot>
+  + GetAdministratorWithdrawnLots(administratorId: Guid): IList<WithdrawnLot>
+}
+
+class LotsArchive.Domain::Entities::Lot {
+  - _id: Guid
+  - _tradingLotId: Guid
+  - _sellerUser: User
+  - _title: Name
+  - _description: Name
+  - _startingPrice: Money
+  - _priceStep: Money
+  - _startDate: DateTime
+  - _endDate: DateTime
+  # Lot()
+  + Lot(id: Guid, tradingLotId: Guid, sellerUser: User, title: Name, description: Name, startingPrice: Money, priceStep: Money, startDate: DateTime, endDate: DateTime)
+  + GetId(): Guid
+  + GetTradingLotId(): Guid
+  + GetSellerUser(): User
+  + GetTitle(): Name
+  + GetDescription(): Name
+  + GetStartingPrice(): Money
+  + GetPriceStep(): Money
+  + GetStartDate(): DateTime
+  + GetEndDate(): DateTime
+}
+
+class LotsArchive.Domain::Entities::WithdrawnLot {
+  - _id: Guid
+  - _lot: Lot
+  - _withdrawnBySeller: bool
+  - _administratorUser: User?
+  - _date: DateTime
+  # WithdrawnLot()
+  + WithdrawnLot(id: Guid, lot: Lot, date: DateTime)
+  + WithdrawnLot(id: Guid, lot: Lot, date: DateTime, administratorUser: User)
+  + GetId(): Guid
+  + GetLot(): Lot
+  + WithdrawnBySeller(): bool
+  + GetAdministratorUser(): User?
+  + GetDate(): DateTime
+}
+
+class LotsArchive.Domain::Entities::RepurchasedLot {
+  - _id: Guid
+  - _lot: Lot
+  - _buyerUser: User
+  - _endPrice: Money
+  - _date: DateTime
+  # WithdrawnLot()
+  + WithdrawnLot(id: Guid, lot: Lot, date: DateTime)
+  + WithdrawnLot(id: Guid, lot: Lot, date: DateTime, adminId: Guid)
+  + GetId(): Guid
+  + GetLot(): Lot
+  + GetBuyerUser(): User
+  + GetDate(): DateTime
+}
+
+LotsArchive.Domain::Entities::IEntity <|.. LotsArchive.Domain::Entities::User
+LotsArchive.Domain::Entities::IEntity <|.. LotsArchive.Domain::Entities::Lot
+LotsArchive.Domain::Entities::IEntity <|.. LotsArchive.Domain::Entities::WithdrawnLot
+LotsArchive.Domain::Entities::IEntity <|.. LotsArchive.Domain::Entities::RepurchasedLot
+
+LotsArchive.Domain::Entities::User <|-- LotsArchive.Domain::Entities::Buyer
+LotsArchive.Domain::Entities::User <|-- LotsArchive.Domain::Entities::Seller
+LotsArchive.Domain::Entities::User <|-- LotsArchive.Domain::Entities::Administrator
+
+LotsArchive.Domain::ValueObjects::ValueObject <|-- LotsArchive.Domain::ValueObjects::Name
+LotsArchive.Domain::ValueObjects::ValueObject <|-- LotsArchive.Domain::ValueObjects::Money
+
+LotsArchive.Domain::Entities::User o-- LotsArchive.Domain::ValueObjects::Name
+LotsArchive.Domain::Entities::Lot o-- LotsArchive.Domain::ValueObjects::Name
+LotsArchive.Domain::Entities::Lot o-- LotsArchive.Domain::ValueObjects::Money
+LotsArchive.Domain::Entities::RepurchasedLot o-- LotsArchive.Domain::ValueObjects::Money
+
+LotsArchive.Domain::Entities::Lot o-- LotsArchive.Domain::Entities::User
+LotsArchive.Domain::Entities::WithdrawnLot o-- LotsArchive.Domain::Entities::User
+LotsArchive.Domain::Entities::RepurchasedLot o-- LotsArchive.Domain::Entities::User
+
+LotsArchive.Domain::Entities::Buyer o-- LotsArchive.Domain::Entities::RepurchasedLot
+LotsArchive.Domain::Entities::Seller o-- LotsArchive.Domain::Entities::RepurchasedLot
+LotsArchive.Domain::Entities::Seller o-- LotsArchive.Domain::Entities::Lot
+LotsArchive.Domain::Entities::Seller o-- LotsArchive.Domain::Entities::WithdrawnLot
+LotsArchive.Domain::Entities::Administrator o-- LotsArchive.Domain::Entities::WithdrawnLot
+
+LotsArchive.Domain::Entities::WithdrawnLot *-- LotsArchive.Domain::Entities::Lot
+LotsArchive.Domain::Entities::RepurchasedLot *-- LotsArchive.Domain::Entities::Lot
+
+LotsArchive.Domain::Entities::Buyer <.. LotsArchive.Domain::Services::AdministratorService
+LotsArchive.Domain::Entities::Seller <.. LotsArchive.Domain::Services::AdministratorService
+LotsArchive.Domain::Entities::Administrator <.. LotsArchive.Domain::Services::AdministratorService
+LotsArchive.Domain::Entities::Lot <.. LotsArchive.Domain::Services::AdministratorService
+LotsArchive.Domain::Entities::WithdrawnLot <.. LotsArchive.Domain::Services::AdministratorService
+LotsArchive.Domain::Entities::RepurchasedLot <.. LotsArchive.Domain::Services::AdministratorService
+
+@enduml
