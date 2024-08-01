@@ -39,6 +39,11 @@ class LotsArchive.Domain::Entities::Buyer {
   + GetBoughtLots(): IList<RepurchasedLot>
 }
 
+class LotsArchive.Domain::Services::BuyerService {
+  + AddRepurchasedLot(buyerId: Guid, lot: RepurchasedLot): void
+  + GetBoughtLots(buyerId: Guid): IList<RepurchasedLot>
+}
+
 class LotsArchive.Domain::Entities::Seller {
   - _soldLots: IList<RepurchasedLot>
   - _withdrawnLots: IList<WithdrawnLot>
@@ -49,6 +54,13 @@ class LotsArchive.Domain::Entities::Seller {
   + GetSoldLots(): IList<RepurchasedLot>
   + GetWithdrawnLots(): IList<WithdrawnLot>
   + GetUnpurchasedLots(): IList<Lot>
+}
+
+class LotsArchive.Domain::Services::SellerService {
+  + AddWithdrawnLot(sellerId: Guid, lot: WithdrawnLot): void
+  + GetSoldLots(sellerId: Guid): IList<RepurchasedLot>
+  + GetWithdrawnLots(sellerId: Guid): IList<WithdrawnLot>
+  + GetUnpurchasedLots(sellerId: Guid): IList<Lot>
 }
 
 class LotsArchive.Domain::Entities::Administrator {
@@ -96,16 +108,16 @@ class LotsArchive.Domain::Entities::Lot {
 class LotsArchive.Domain::Entities::WithdrawnLot {
   - _id: Guid
   - _lot: Lot
-  - _withdrawnBySeller: bool
-  - _administratorUser: User?
+  - _isWithdrawnByAdministrator: bool
+  - _withdrawningUser: User
   - _date: DateTime
   # WithdrawnLot()
   + WithdrawnLot(id: Guid, lot: Lot, date: DateTime)
   + WithdrawnLot(id: Guid, lot: Lot, date: DateTime, administratorUser: User)
   + GetId(): Guid
   + GetLot(): Lot
-  + WithdrawnBySeller(): bool
-  + GetAdministratorUser(): User?
+  + IsWithdrawnedByAdministrator(): bool
+  + GetWithdrawningUser(): User
   + GetDate(): DateTime
 }
 
@@ -160,5 +172,13 @@ LotsArchive.Domain::Entities::Administrator <.. LotsArchive.Domain::Services::Ad
 LotsArchive.Domain::Entities::Lot <.. LotsArchive.Domain::Services::AdministratorService
 LotsArchive.Domain::Entities::WithdrawnLot <.. LotsArchive.Domain::Services::AdministratorService
 LotsArchive.Domain::Entities::RepurchasedLot <.. LotsArchive.Domain::Services::AdministratorService
+
+LotsArchive.Domain::Entities::Buyer <.. LotsArchive.Domain::Services::BuyerService
+LotsArchive.Domain::Entities::RepurchasedLot <.. LotsArchive.Domain::Services::BuyerService
+
+LotsArchive.Domain::Entities::Seller <.. LotsArchive.Domain::Services::SellerService
+LotsArchive.Domain::Entities::Lot <.. LotsArchive.Domain::Services::SellerService
+LotsArchive.Domain::Entities::WithdrawnLot <.. LotsArchive.Domain::Services::SellerService
+LotsArchive.Domain::Entities::RepurchasedLot <.. LotsArchive.Domain::Services::SellerService
 
 @enduml
