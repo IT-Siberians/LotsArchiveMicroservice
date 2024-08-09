@@ -1,5 +1,6 @@
 ﻿using Auction.Common.Domain.Entities;
 using Auction.Common.Domain.Exceptions;
+using System;
 
 namespace Auction.LotsArchiveMicroservice.Domain.Entities;
 
