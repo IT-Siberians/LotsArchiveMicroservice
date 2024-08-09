@@ -7,15 +7,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{731988
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{21262FA8-4B4E-4DD2-81AF-C057174881C0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auction.Common.Domain", "Common\Auction.Common.Domain\Auction.Common.Domain.csproj", "{F66DA332-30A1-42E5-9F22-44AF9F38C8E3}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auction.LotsArchiveMicroservice.Domain", "Domain\Auction.LotsArchiveMicroservice.Domain\Auction.LotsArchiveMicroservice.Domain.csproj", "{829DB8FE-1974-4945-945E-C975C90700D5}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{DEE2E9C9-2099-41E0-B666-64DA0A22E88E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{E07F219E-26C2-4A02-B943-6DA11E1741A9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{4B484274-190E-4134-AE31-4144FBDEBA1E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auction.Common.Domain", "Common\Auction.Common.Domain\Auction.Common.Domain.csproj", "{F66DA332-30A1-42E5-9F22-44AF9F38C8E3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auction.LotsArchiveMicroservice.Domain", "Domain\Auction.LotsArchiveMicroservice.Domain\Auction.LotsArchiveMicroservice.Domain.csproj", "{829DB8FE-1974-4945-945E-C975C90700D5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
