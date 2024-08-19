@@ -9,7 +9,7 @@ public class SellerConfiguration : IEntityTypeConfiguration<Seller>
 {
     public void Configure(EntityTypeBuilder<Seller> builder)
     {
-        builder.Property<Name>("_username")
+        builder.Property(s => s.Username)
             .IsRequired()
             .HasMaxLength(Name.MaxLength)
             .HasConversion(

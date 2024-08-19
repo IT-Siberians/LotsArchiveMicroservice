@@ -9,20 +9,19 @@ public class LotConfiguration : IEntityTypeConfiguration<Lot>
 {
     public void Configure(EntityTypeBuilder<Lot> builder)
     {
-        builder.Property<Name>("_title")
+        builder.Property(e => e.Title)
             .IsRequired()
             .HasMaxLength(Name.MaxLength)
             .HasConversion(
                 name => name.Value,
                 str => new Name(str)
             );
-        builder.Property<Text>("_description")
+        builder.Property(e => e.Description)
             .IsRequired()
             .HasConversion(
                 text => text.Value,
                 str => new Text(str)
             );
-
         builder.Property(e => e.StartingPrice)
             .HasConversion(
                 money => money.Value,
