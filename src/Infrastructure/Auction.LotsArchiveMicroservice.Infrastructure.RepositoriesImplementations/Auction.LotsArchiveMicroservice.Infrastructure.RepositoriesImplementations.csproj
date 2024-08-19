@@ -9,6 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Common\Auction.Common.Domain\Auction.Common.Domain.csproj" />
     <ProjectReference Include="..\..\Common\Auction.Common.Infrastructure\Auction.Common.Infrastructure.csproj" />
+    <ProjectReference Include="..\Auction.LotsArchiveMicroservice.Infrastructure.EntityFramework\Auction.LotsArchiveMicroservice.Infrastructure.EntityFramework.csproj" />
   </ItemGroup>
 
 </Project>
