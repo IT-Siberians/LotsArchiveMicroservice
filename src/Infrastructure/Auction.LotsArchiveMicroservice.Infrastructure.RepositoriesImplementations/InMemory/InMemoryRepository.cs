@@ -7,4 +7,4 @@ namespace Auction.LotsArchiveMicroservice.Infrastructure.RepositoriesImplementat
 
 public class InMemoryRepository<TEntity>(IEnumerable<TEntity> entities)
     : AbstractInMemoryRepository<TEntity, Guid>(entities)
-    where TEntity : IEntity<Guid>;
+    where TEntity : class, IEntity<Guid>;
