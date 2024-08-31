@@ -1,4 +1,5 @@
-﻿using Auction.Common.Domain.ValueObjects;
+﻿using Auction.Common.Domain.ValueObjects.Numeric;
+using Auction.Common.Domain.ValueObjects.String;
 using Auction.LotsArchiveMicroservice.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -11,10 +12,10 @@ public class LotConfiguration : IEntityTypeConfiguration<Lot>
     {
         builder.Property(e => e.Title)
             .IsRequired()
-            .HasMaxLength(Name.MaxLength)
+            .HasMaxLength(Title.MaxLength)
             .HasConversion(
                 name => name.Value,
-                str => new Name(str)
+                str => new Title(str)
             );
         builder.Property(e => e.Description)
             .IsRequired()
@@ -24,13 +25,13 @@ public class LotConfiguration : IEntityTypeConfiguration<Lot>
             );
         builder.Property(e => e.StartingPrice)
             .HasConversion(
-                money => money.Value,
-                number => new Money(number)
+                price => price.Value,
+                number => new Price(number)
             );
         builder.Property(e => e.PriceStep)
             .HasConversion(
-                money => money.Value,
-                number => new Money(number)
+                price => price.Value,
+                number => new Price(number)
             );
 
         builder.HasOne(t => t.Seller).WithMany("_unpurchasedLots");

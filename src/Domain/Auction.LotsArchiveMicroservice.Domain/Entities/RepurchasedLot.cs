@@ -1,6 +1,6 @@
 ﻿using Auction.Common.Domain.Entities;
-using Auction.Common.Domain.Exceptions;
-using Auction.Common.Domain.ValueObjects;
+using Auction.Common.Domain.EntitiesExceptions;
+using Auction.Common.Domain.ValueObjects.Numeric;
 using System;
 
 namespace Auction.LotsArchiveMicroservice.Domain.Entities;
@@ -33,7 +33,14 @@ public class RepurchasedLot : IEntity<Guid>
     /// <summary>
     /// Конечная цена выкупа лота
     /// </summary>
-    public Money EndPrice { get; }
+    public Price EndPrice { get; }
+
+    /// <summary>
+    /// Конструктор для EF
+    /// </summary>
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+    protected RepurchasedLot() { }
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 
     /// <summary>
     /// Основной конструктор информации о выкупе лота
@@ -49,13 +56,14 @@ public class RepurchasedLot : IEntity<Guid>
         DateTime date,
         Lot lot,
         Buyer buyer,
-        Money endPrice)
+        Price endPrice)
     {
+        Id = GuidEmptyValueException.GetGuidOrThrowIfEmpty(id);
+
         Lot = lot ?? throw new ArgumentNullValueException(nameof(lot));
         Buyer = buyer ?? throw new ArgumentNullValueException(nameof(buyer));
         EndPrice = endPrice ?? throw new ArgumentNullValueException(nameof(endPrice));
 
-        Id = id;
         Date = date;
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Auction.Common.Domain.Entities;
-using Auction.Common.Domain.Exceptions;
-using Auction.Common.Domain.ValueObjects;
+using Auction.Common.Domain.EntitiesExceptions;
+using Auction.Common.Domain.ValueObjects.Numeric;
+using Auction.Common.Domain.ValueObjects.String;
 using System;
 
 namespace Auction.LotsArchiveMicroservice.Domain.Entities;
@@ -18,12 +19,12 @@ public class Lot : AbstractLot<Guid>
     /// <summary>
     /// Начальная цена
     /// </summary>
-    public Money StartingPrice { get; }
+    public Price StartingPrice { get; }
 
     /// <summary>
     /// Минимальный шаг цены
     /// </summary>
-    public Money PriceStep { get; }
+    public Price PriceStep { get; }
 
     /// <summary>
     /// Дата старта торгов по лоту
@@ -34,6 +35,13 @@ public class Lot : AbstractLot<Guid>
     /// Дата окончания торгов по лоту
     /// </summary>
     public DateTime? EndDate { get; protected set; }
+
+    /// <summary>
+    /// Конструктор для EF
+    /// </summary>
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+    protected Lot() { }
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 
     /// <summary>
     /// Основной конструктор лота
@@ -49,15 +57,17 @@ public class Lot : AbstractLot<Guid>
     /// <exception cref="ArgumentNullValueException">Если аргумент null</exception>
     public Lot(
         Guid id,
-        Name title,
+        Title title,
         Text description,
         Seller seller,
-        Money startingPrice,
-        Money priceStep,
+        Price startingPrice,
+        Price priceStep,
         DateTime startDate,
         DateTime? endDate = null)
-        : base(id, title, description)
+            : base(id, title, description)
     {
+        GuidEmptyValueException.ThrowIfEmpty(id);
+
         Seller = seller ?? throw new ArgumentNullValueException(nameof(seller));
         StartingPrice = startingPrice ?? throw new ArgumentNullValueException(nameof(startingPrice));
         PriceStep = priceStep ?? throw new ArgumentNullValueException(nameof(priceStep));

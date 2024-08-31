@@ -1,4 +1,4 @@
-﻿using Auction.Common.Domain.ValueObjects;
+﻿using Auction.Common.Domain.ValueObjects.Numeric;
 using Auction.LotsArchiveMicroservice.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -11,8 +11,8 @@ public class RepurchasedLotConfiguration : IEntityTypeConfiguration<RepurchasedL
     {
         builder.Property(e => e.EndPrice)
             .HasConversion(
-                money => money.Value,
-                number => new Money(number)
+                price => price.Value,
+                number => new Price(number)
             );
 
         builder.HasOne(t => t.Lot).WithOne();

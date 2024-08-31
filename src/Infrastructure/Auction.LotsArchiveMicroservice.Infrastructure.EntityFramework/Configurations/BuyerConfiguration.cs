@@ -1,4 +1,4 @@
-﻿using Auction.Common.Domain.ValueObjects;
+﻿using Auction.Common.Domain.ValueObjects.String;
 using Auction.LotsArchiveMicroservice.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -11,10 +11,10 @@ public class BuyerConfiguration : IEntityTypeConfiguration<Buyer>
     {
         builder.Property(b => b.Username)
             .IsRequired()
-            .HasMaxLength(Name.MaxLength)
+            .HasMaxLength(PersonName.MaxLength)
             .HasConversion(
                 name => name.Value,
-                str => new Name(str)
+                str => new PersonName(str)
             );
 
         builder.HasMany<RepurchasedLot>("_boughtLots").WithOne(t => t.Buyer);
