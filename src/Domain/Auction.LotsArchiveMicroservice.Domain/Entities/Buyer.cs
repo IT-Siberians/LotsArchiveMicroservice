@@ -37,7 +37,7 @@ public class Buyer : AbstractPerson<Guid>
     /// <exception cref="ArgumentNullValueException">Если аргумент null</exception>
     public Buyer(
         Guid id,
-        PersonName username,
+        Username username,
         ICollection<RepurchasedLot> boughtLots)
             : base(id, username)
     {

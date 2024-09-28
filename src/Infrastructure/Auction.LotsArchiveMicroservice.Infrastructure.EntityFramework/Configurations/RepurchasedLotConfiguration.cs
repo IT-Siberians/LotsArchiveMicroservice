@@ -9,7 +9,7 @@ public class RepurchasedLotConfiguration : IEntityTypeConfiguration<RepurchasedL
 {
     public void Configure(EntityTypeBuilder<RepurchasedLot> builder)
     {
-        builder.Property(e => e.EndPrice)
+        builder.Property(e => e.HammerPrice)
             .HasConversion(
                 price => price.Value,
                 number => new Price(number)

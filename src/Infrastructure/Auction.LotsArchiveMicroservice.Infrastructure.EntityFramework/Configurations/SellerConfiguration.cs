@@ -11,10 +11,10 @@ public class SellerConfiguration : IEntityTypeConfiguration<Seller>
     {
         builder.Property(s => s.Username)
             .IsRequired()
-            .HasMaxLength(PersonName.MaxLength)
+            .HasMaxLength(Username.MaxLength)
             .HasConversion(
                 name => name.Value,
-                str => new PersonName(str)
+                str => new Username(str)
             );
 
         builder.HasMany<RepurchasedLot>("_soldLots").WithOne(t => t.Lot.Seller);

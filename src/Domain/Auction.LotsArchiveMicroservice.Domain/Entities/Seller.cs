@@ -55,7 +55,7 @@ public class Seller : AbstractPerson<Guid>
     /// <exception cref="ArgumentNullValueException">Если аргумент null</exception>
     public Seller(
         Guid id,
-        PersonName username,
+        Username username,
         ICollection<RepurchasedLot> soldLots,
         ICollection<WithdrawnLot> withdrawnLots,
         ICollection<Lot> unpurchasedLots)

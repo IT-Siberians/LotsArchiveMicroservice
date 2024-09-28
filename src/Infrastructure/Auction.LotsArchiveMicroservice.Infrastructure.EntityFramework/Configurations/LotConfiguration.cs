@@ -28,7 +28,12 @@ public class LotConfiguration : IEntityTypeConfiguration<Lot>
                 price => price.Value,
                 number => new Price(number)
             );
-        builder.Property(e => e.PriceStep)
+        builder.Property(e => e.BidIncrement)
+            .HasConversion(
+                price => price.Value,
+                number => new Price(number)
+            );
+        builder.Property(e => e.RepurchasePrice)
             .HasConversion(
                 price => price.Value,
                 number => new Price(number)

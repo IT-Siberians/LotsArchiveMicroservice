@@ -31,9 +31,9 @@ public class RepurchasedLot : IEntity<Guid>
     public Buyer Buyer { get; }
 
     /// <summary>
-    /// Конечная цена выкупа лота
+    /// Цена за которую лот был выкуплен
     /// </summary>
-    public Price EndPrice { get; }
+    public Price HammerPrice { get; }
 
     /// <summary>
     /// Конструктор для EF
@@ -62,7 +62,7 @@ public class RepurchasedLot : IEntity<Guid>
 
         Lot = lot ?? throw new ArgumentNullValueException(nameof(lot));
         Buyer = buyer ?? throw new ArgumentNullValueException(nameof(buyer));
-        EndPrice = endPrice ?? throw new ArgumentNullValueException(nameof(endPrice));
+        HammerPrice = endPrice ?? throw new ArgumentNullValueException(nameof(endPrice));
 
         Date = date;
     }

@@ -24,7 +24,12 @@ public class Lot : AbstractLot<Guid>
     /// <summary>
     /// Минимальный шаг цены
     /// </summary>
-    public Price PriceStep { get; }
+    public Price BidIncrement { get; }
+
+    /// <summary>
+    /// Фиксированная ставка выкупа
+    /// </summary>
+    public Price RepurchasePrice { get; }
 
     /// <summary>
     /// Дата старта торгов по лоту
@@ -61,7 +66,8 @@ public class Lot : AbstractLot<Guid>
         Text description,
         Seller seller,
         Price startingPrice,
-        Price priceStep,
+        Price bidIncrement,
+        Price repurchasePrice,
         DateTime startDate,
         DateTime? endDate = null)
             : base(id, title, description)
@@ -70,7 +76,8 @@ public class Lot : AbstractLot<Guid>
 
         Seller = seller ?? throw new ArgumentNullValueException(nameof(seller));
         StartingPrice = startingPrice ?? throw new ArgumentNullValueException(nameof(startingPrice));
-        PriceStep = priceStep ?? throw new ArgumentNullValueException(nameof(priceStep));
+        BidIncrement = bidIncrement ?? throw new ArgumentNullValueException(nameof(bidIncrement));
+        RepurchasePrice = repurchasePrice ?? throw new ArgumentNullValueException(nameof(repurchasePrice));
 
         StartDate = startDate;
         EndDate = endDate;
