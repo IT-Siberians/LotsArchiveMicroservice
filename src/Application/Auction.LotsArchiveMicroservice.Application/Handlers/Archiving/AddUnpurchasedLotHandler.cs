@@ -1,0 +1,74 @@
+﻿using Auction.Common.Application.Answers;
+using Auction.Common.Application.Handlers.Abstractions;
+using Auction.Common.Domain.ValueObjects.Numeric;
+using Auction.Common.Domain.ValueObjects.String;
+using Auction.LotsArchiveMicroservice.Application.Commands.Archiving;
+using Auction.LotsArchiveMicroservice.Application.RepositoriesAbstractions;
+using Auction.LotsArchiveMicroservice.Domain.Entities;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace Auction.LotsArchiveMicroservice.Application.Handlers.Archiving;
+
+public class AddUnpurchasedLotHandler(
+    ILotsRepository lotsRepository,
+    ISellersRepository sellersRepository)
+        : ICommandHandler<AddUnpurchasedLotCommand>,
+        IDisposable
+{
+    private readonly ILotsRepository _lotsRepository = lotsRepository ?? throw new ArgumentNullException(nameof(lotsRepository));
+    private readonly ISellersRepository _sellersRepository = sellersRepository ?? throw new ArgumentNullException(nameof(sellersRepository));
+
+    private bool _isDisposed;
+
+    public void Dispose()
+    {
+        if (!_isDisposed)
+        {
+            _lotsRepository.Dispose();
+            _sellersRepository.Dispose();
+
+            _isDisposed = true;
+        }
+
+        GC.SuppressFinalize(this);
+    }
+
+    public async Task<IAnswer> HandleAsync(AddUnpurchasedLotCommand command, CancellationToken cancellationToken = default)
+    {
+        var existingLot = await _lotsRepository.GetByIdAsync(command.Lot.Id, cancellationToken: cancellationToken);
+        if (existingLot is not null)
+        {
+            return BadAnswer.Error($"Уже существует лот с Id = {command.Lot.Id}");
+        }
+
+        var seller = await _sellersRepository.GetByIdAsync(command.Lot.SellerId, cancellationToken: cancellationToken);
+        if (seller is null)
+        {
+            return BadAnswer.EntityNotFound($"Не существует продавец с Id = {command.Lot.SellerId}");
+        }
+
+        var title = new Title(command.Lot.Title);
+        var description = new Text(command.Lot.Description);
+        var startingPrice = new Price(command.Lot.StartingPrice);
+        var bidIncrement = new Price(command.Lot.BidIncrement);
+        var repurchasePrice = command.Lot.RepurchasePrice is null ? null : new Price(command.Lot.RepurchasePrice!.Value);
+
+        var lot = new Lot(
+            command.Lot.Id,
+            title,
+            description,
+            seller,
+            startingPrice,
+            bidIncrement,
+            repurchasePrice,
+            command.Lot.StartDateTime,
+            command.Lot.EndDateTime);
+
+        await _lotsRepository.AddAsync(lot, cancellationToken);
+        await _lotsRepository.SaveChangesAsync(cancellationToken);
+
+        return new OkAnswer($"Лот с Id = {command.Lot.Id} создан");
+    }
+}
