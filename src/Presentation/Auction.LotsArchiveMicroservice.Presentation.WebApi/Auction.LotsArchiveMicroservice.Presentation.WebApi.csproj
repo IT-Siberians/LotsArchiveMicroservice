@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="FluentValidation" Version="11.10.0" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.10" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.9.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Application\Auction.LotsArchiveMicroservice.Application\Auction.LotsArchiveMicroservice.Application.csproj" />
+    <ProjectReference Include="..\..\Common\Auction.Common.Application\Auction.Common.Application.csproj" />
+    <ProjectReference Include="..\..\Common\Auction.Common.Domain\Auction.Common.Domain.csproj" />
+    <ProjectReference Include="..\..\Common\Auction.Common.Infrastructure\Auction.Common.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Common\Auction.Common.Presentation\Auction.Common.Presentation.csproj" />
+    <ProjectReference Include="..\..\Domain\Auction.LotsArchiveMicroservice.Domain\Auction.LotsArchiveMicroservice.Domain.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Auction.LotsArchiveMicroservice.Infrastructure.EntityFramework\Auction.LotsArchiveMicroservice.Infrastructure.EntityFramework.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Auction.LotsArchiveMicroservice.Infrastructure.RepositoriesImplementations\Auction.LotsArchiveMicroservice.Infrastructure.RepositoriesImplementations.csproj" />
+  </ItemGroup>
+
+</Project>
