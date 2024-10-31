@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Common\Auction.Common.Application\Auction.Common.Application.csproj" />
-    <ProjectReference Include="..\..\Common\Auction.Common.Domain\Auction.Common.Domain.csproj" />
+    <ProjectReference Include="..\..\Common\L1\Auction.Common.Domain\Auction.Common.Domain.csproj" />
+    <ProjectReference Include="..\..\Common\L2\Auction.Common.Application.Interfaces\Auction.Common.Application.Interfaces.csproj" />
     <ProjectReference Include="..\..\L1.Domain\Auction.LotsArchive.Domain\Auction.LotsArchive.Domain.csproj" />
   </ItemGroup>
 

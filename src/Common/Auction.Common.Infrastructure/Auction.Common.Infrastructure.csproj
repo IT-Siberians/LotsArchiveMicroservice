@@ -10,9 +10,4 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.8" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Auction.Common.Application\Auction.Common.Application.csproj" />
-    <ProjectReference Include="..\Auction.Common.Domain\Auction.Common.Domain.csproj" />
-  </ItemGroup>
-
 </Project>
