@@ -1,5 +1,5 @@
-﻿using Auction.Common.Domain.Entities;
-using Auction.Common.Domain.RepositoriesAbstractions.Base;
+﻿using Auction.Common.Application.RepositoriesAbstractions.Base;
+using Auction.Common.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Threading;
@@ -21,7 +21,10 @@ public class BaseEfRepositoryWithUpdateAndDelete<TDbContext, TEntity, TKey>(TDbC
     /// <returns>true если сущность существует, иначе false</returns>
     public virtual bool Delete(TEntity entity)
     {
+        ArgumentNullException.ThrowIfNull(entity, nameof(entity));
+
         entity.MarkAsDeletedSoftly();
+
         return Update(entity);
     }
 
@@ -33,11 +36,11 @@ public class BaseEfRepositoryWithUpdateAndDelete<TDbContext, TEntity, TKey>(TDbC
     /// <returns>true если сущность существует, иначе false</returns>
     public virtual async Task<bool> DeleteByIdAsync(
         TKey id,
-        CancellationToken cancellationToken)
+        CancellationToken cancellationToken = default)
     {
         var entity = await GetByIdAsync(id, cancellationToken: cancellationToken);
 
-        if (entity == null)
+        if (entity is null)
         {
             return false;
         }

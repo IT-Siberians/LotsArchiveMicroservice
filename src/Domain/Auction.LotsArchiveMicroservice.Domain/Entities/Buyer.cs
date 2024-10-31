@@ -1,6 +1,5 @@
 ﻿using Auction.Common.Domain.Entities;
 using Auction.Common.Domain.EntitiesExceptions;
-using Auction.Common.Domain.ValueObjects.String;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +9,21 @@ namespace Auction.LotsArchiveMicroservice.Domain.Entities;
 /// <summary>
 /// Покупатель
 /// </summary>
-public class Buyer : AbstractPerson<Guid>
+public class Buyer : IEntity<Guid>//: Person
 {
 #pragma warning disable IDE0044 // Add readonly modifier
     private ICollection<RepurchasedLot>? _boughtLots;
 #pragma warning restore IDE0044 // Add readonly modifier
+
+    /// <summary>
+    /// Уникальный идентификатор
+    /// </summary>
+    public Guid Id { get; }
+
+    /// <summary>
+    /// Данные человека
+    /// </summary>
+    public Person PersonInfo { get; }
 
     /// <summary>
     /// Все лоты, купленные покупателем
@@ -26,23 +35,22 @@ public class Buyer : AbstractPerson<Guid>
     /// <summary>
     /// Конструктор для EF
     /// </summary>
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
     protected Buyer() { }
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+
 
     /// <summary>
     /// Основной конструктор покупателя
     /// </summary>
-    /// <param name="id">Уникальный идентификатор покупателя</param>
-    /// <param name="username">Имя покупателя</param>
+    /// <param name="person">Данные покупателя</param>
     /// <param name="boughtLots">Коллекция купленных лотов</param>
     /// <exception cref="ArgumentNullValueException">Если аргумент null</exception>
     public Buyer(
-        Guid id,
-        Username username,
+        Person person,
         ICollection<RepurchasedLot> boughtLots)
-            : base(id, username)
     {
-        GuidEmptyValueException.ThrowIfEmpty(id);
-
+        PersonInfo = person ?? throw new ArgumentNullValueException(nameof(person));
         _boughtLots = boughtLots ?? throw new ArgumentNullValueException(nameof(boughtLots));
     }
 }

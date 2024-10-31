@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Auction.Common.Infrastructure.RepositoriesImplementations.InMemory;
 
-public class BaseMemoryRepositoryWithUpdateAndDelete<TEntity, TKey>(IList<TEntity> entities)
-    : BaseMemoryRepositoryWithUpdate<TEntity, TKey>(entities),
-    IBaseRepositoryWithUpdateAndDelete<TEntity, TKey>
+public class BaseMemoryRepositoryWithDelete<TEntity, TKey>(IList<TEntity> entities)
+    : BaseMemoryRepository<TEntity, TKey>(entities),
+    IBaseRepositoryWithDelete<TEntity, TKey>
         where TEntity : class, IEntity<TKey>, IDeletableSoftly
         where TKey : struct, IEquatable<TKey>
 {
@@ -21,7 +21,7 @@ public class BaseMemoryRepositoryWithUpdateAndDelete<TEntity, TKey>(IList<TEntit
     public virtual bool Delete(TEntity entity)
     {
         entity.MarkAsDeletedSoftly();
-        return Update(entity);
+        return true;
     }
 
     /// <summary>

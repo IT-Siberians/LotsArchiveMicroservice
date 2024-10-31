@@ -1,6 +1,6 @@
 ﻿using Auction.Common.Infrastructure.RepositoriesImplementations.InMemory;
+using Auction.LotsArchiveMicroservice.Application.RepositoriesAbstractions;
 using Auction.LotsArchiveMicroservice.Domain.Entities;
-using Auction.LotsArchiveMicroservice.Domain.RepositoriesAbstractions;
 using System;
 using System.Collections.Generic;
 

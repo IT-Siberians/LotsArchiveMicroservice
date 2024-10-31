@@ -1,5 +1,7 @@
-﻿using Auction.Common.Domain.Entities;
-using Auction.Common.Domain.RepositoriesAbstractions.Base;
+﻿using Auction.Common.Application.Commands;
+using Auction.Common.Application.Pages;
+using Auction.Common.Application.RepositoriesAbstractions.Base;
+using Auction.Common.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,31 +34,54 @@ public class BaseMemoryRepository<TEntity, TKey>(IList<TEntity> entities)
     /// </summary>
     /// <param name="filter">Фильтр</param>
     /// <param name="orderKeySelector">Выбор ключа сортировки</param>
+    /// <param name="pageQuery">Параметры возвращаемой страницы данных</param>
     /// <returns>Перечисление сущностей</returns>
-    public virtual Task<IEnumerable<TEntity>> GetAsync<TOrderKey>(
+    public virtual Task<IPageOf<TEntity>> GetAsync<TOrderKey>(
         Expression<Func<TEntity, bool>>? filter = null,
         Expression<Func<TEntity, TOrderKey>>? orderKeySelector = null,
-        string[]? _ = null,
-        bool __ = true,
-        CancellationToken ___ = default)
+        PageQuery? pageQuery = null,
+        string? includeProperties = null,
+        bool useTracking = true,
+        CancellationToken cancellationToken = default)
     {
         var entities = Entities;
 
-        if (filter != null)
+        if (filter is not null)
         {
             entities = entities
                 .Where(filter.Compile())
                 .ToList();
         }
 
-        if (orderKeySelector != null)
+        if (orderKeySelector is not null)
         {
             entities = entities
                 .OrderBy(orderKeySelector.Compile())
                 .ToList();
         }
 
-        return Task.FromResult(entities.AsEnumerable());
+        var itemsCount = entities.Count;
+
+        if (pageQuery is not null)
+        {
+            entities = entities
+                .Skip((pageQuery.Number - 1) * pageQuery.ItemsCount)
+                .Take(pageQuery.ItemsCount)
+                .ToList();
+        }
+
+        var pageNumber = pageQuery?.Number ?? 1;
+        var pageItemsCount = pageQuery?.ItemsCount ?? itemsCount;
+        var pagesCount = pageQuery is null ? 1 : (int)Math.Ceiling((double)itemsCount / pageQuery.ItemsCount);
+
+        var resultPage = new PageOf<TEntity>(
+                                itemsCount,
+                                pageItemsCount,
+                                pagesCount,
+                                pageNumber,
+                                entities);
+
+        return Task.FromResult<IPageOf<TEntity>>(resultPage);
     }
 
     /// <summary>
@@ -66,8 +91,9 @@ public class BaseMemoryRepository<TEntity, TKey>(IList<TEntity> entities)
     /// <returns>Найденная сущность или null</returns>
     public virtual Task<TEntity?> GetByIdAsync(
         TKey id,
-        string[]? _ = null,
-        CancellationToken __ = default)
+        string? includeProperties = null,
+        bool useTracking = true,
+        CancellationToken cancellationToken = default)
             => Task.FromResult(Entities.FirstOrDefault(x => x.Id.Equals(id)));
 
     /// <summary>
@@ -77,7 +103,7 @@ public class BaseMemoryRepository<TEntity, TKey>(IList<TEntity> entities)
     /// <returns>true если сущность добавлена, иначе false</returns>
     public virtual Task<bool> AddAsync(
         TEntity entity,
-        CancellationToken _ = default)
+        CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(entity, nameof(entity));
 
@@ -94,7 +120,7 @@ public class BaseMemoryRepository<TEntity, TKey>(IList<TEntity> entities)
     /// <summary>
     /// Сохраняет изменения асинхронно
     /// </summary>
-    public virtual Task SaveChangesAsync(CancellationToken _ = default)
+    public virtual Task SaveChangesAsync(CancellationToken cancellationToken = default)
         => Task.CompletedTask;
 
     public virtual void Dispose()

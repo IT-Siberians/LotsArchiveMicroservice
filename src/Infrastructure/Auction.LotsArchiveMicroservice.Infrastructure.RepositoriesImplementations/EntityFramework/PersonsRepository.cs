@@ -6,6 +6,6 @@ using System;
 
 namespace Auction.LotsArchiveMicroservice.Infrastructure.RepositoriesImplementations.EntityFramework;
 
-public class LotsRepository(ApplicationDbContext dbContext)
-    : BaseEfRepository<ApplicationDbContext, Lot, Guid>(dbContext),
-    ILotsRepository;
+public class PersonsRepository(ApplicationDbContext dbContext)
+    : BaseEfRepositoryWithDelete<ApplicationDbContext, Person, Guid>(dbContext),
+    IPersonsRepository;

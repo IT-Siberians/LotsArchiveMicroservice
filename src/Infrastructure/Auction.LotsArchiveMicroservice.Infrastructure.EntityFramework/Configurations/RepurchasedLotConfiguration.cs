@@ -1,21 +1,34 @@
-﻿using Auction.Common.Domain.ValueObjects.Numeric;
-using Auction.LotsArchiveMicroservice.Domain.Entities;
+﻿using Auction.LotsArchiveMicroservice.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Auction.LotsArchiveMicroservice.Infrastructure.EntityFramework.Configurations;
 
-public class RepurchasedLotConfiguration : IEntityTypeConfiguration<RepurchasedLot>
+internal class RepurchasedLotConfiguration : IEntityTypeConfiguration<RepurchasedLot>
 {
     public void Configure(EntityTypeBuilder<RepurchasedLot> builder)
     {
-        builder.Property(e => e.HammerPrice)
-            .HasConversion(
-                price => price.Value,
-                number => new Price(number)
-            );
+        builder.HasKey(e => e.Id);
 
-        builder.HasOne(t => t.Lot).WithOne();
-        builder.HasOne(t => t.Buyer).WithMany("_boughtLots");
+        builder.Property(e => e.DateTime).IsRequired();
+
+        builder.OwnsOne(
+            e => e.HammerPrice,
+            a => a.Property(p => p.Value)
+                .HasColumnName("HammerPrice")
+                .HasColumnType("money")
+                .IsRequired());
+
+        builder.HasOne(rl => rl.Lot)
+            .WithOne(e => e.RepurchasedLot)
+            .HasForeignKey<RepurchasedLot>("_lotId")
+            .IsRequired();
+
+        builder.Property("_lotId")
+            .HasColumnName("LotId")
+            .IsRequired();
+
+        builder.HasOne(rl => rl.Buyer)
+            .WithMany("_boughtLots");
     }
 }

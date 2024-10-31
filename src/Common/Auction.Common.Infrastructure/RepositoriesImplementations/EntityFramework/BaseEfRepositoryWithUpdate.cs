@@ -1,5 +1,5 @@
-﻿using Auction.Common.Domain.Entities;
-using Auction.Common.Domain.RepositoriesAbstractions.Base;
+﻿using Auction.Common.Application.RepositoriesAbstractions.Base;
+using Auction.Common.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 

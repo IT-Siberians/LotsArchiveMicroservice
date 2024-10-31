@@ -6,6 +6,6 @@ using System.Collections.Generic;
 
 namespace Auction.LotsArchiveMicroservice.Infrastructure.RepositoriesImplementations.InMemory;
 
-public class SellersRepository(IList<Seller> entities)
-    : BaseMemoryRepository<Seller, Guid>(entities),
-    ISellersRepository;
+public class PersonsRepository(IList<Person> entities)
+    : BaseMemoryRepositoryWithDelete<Person, Guid>(entities),
+    IPersonsRepository;

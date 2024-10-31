@@ -10,6 +10,12 @@ namespace Auction.LotsArchiveMicroservice.Domain.Entities;
 /// </summary>
 public class RepurchasedLot : IEntity<Guid>
 {
+#pragma warning disable IDE0044 // Add readonly modifier
+#pragma warning disable IDE0051 // Remove unused private members
+    private Guid _lotId;
+#pragma warning restore IDE0051 // Remove unused private members
+#pragma warning restore IDE0044 // Add readonly modifier
+
     /// <summary>
     /// Уникальный идентификатор записи о выкупе лота
     /// </summary>
@@ -18,7 +24,7 @@ public class RepurchasedLot : IEntity<Guid>
     /// <summary>
     /// Дата выкупа лота
     /// </summary>
-    public DateTime Date { get; }
+    public DateTime DateTime { get; }
 
     /// <summary>
     /// Выкупленный лот
@@ -46,24 +52,24 @@ public class RepurchasedLot : IEntity<Guid>
     /// Основной конструктор информации о выкупе лота
     /// </summary>
     /// <param name="id">Уникальный идентификатор записи о выкупе лота</param>
-    /// <param name="date">Дата выкупа лота</param>
+    /// <param name="dateTime">Дата выкупа лота</param>
     /// <param name="lot">Выкупленный лот</param>
     /// <param name="buyer">Покупатель лота</param>
-    /// <param name="endPrice">Конечная цена выкупа лота</param>
+    /// <param name="hammerPrice">Конечная цена выкупа лота</param>
     /// <exception cref="ArgumentNullValueException">Если аргумент null</exception>
     public RepurchasedLot(
         Guid id,
-        DateTime date,
+        DateTime dateTime,
         Lot lot,
         Buyer buyer,
-        Price endPrice)
+        Price hammerPrice)
     {
         Id = GuidEmptyValueException.GetGuidOrThrowIfEmpty(id);
 
         Lot = lot ?? throw new ArgumentNullValueException(nameof(lot));
         Buyer = buyer ?? throw new ArgumentNullValueException(nameof(buyer));
-        HammerPrice = endPrice ?? throw new ArgumentNullValueException(nameof(endPrice));
+        HammerPrice = hammerPrice ?? throw new ArgumentNullValueException(nameof(hammerPrice));
 
-        Date = date;
+        DateTime = dateTime;
     }
 }

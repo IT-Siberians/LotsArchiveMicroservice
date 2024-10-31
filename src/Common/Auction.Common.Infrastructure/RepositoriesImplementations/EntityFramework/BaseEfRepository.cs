@@ -1,8 +1,9 @@
-﻿using Auction.Common.Domain.Entities;
-using Auction.Common.Domain.RepositoriesAbstractions.Base;
+﻿using Auction.Common.Application.Commands;
+using Auction.Common.Application.Pages;
+using Auction.Common.Application.RepositoriesAbstractions.Base;
+using Auction.Common.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading;
@@ -38,14 +39,16 @@ public class BaseEfRepository<TDbContext, TEntity, TKey>(TDbContext dbContext)
     /// </summary>
     /// <param name="filter">Фильтр</param>
     /// <param name="orderKeySelector">Выбор ключа сортировки</param>
+    /// <param name="pageQuery">Параметры возвращаемой страницы данных</param>
     /// <param name="includeProperties">Загружаемые свойства</param>
     /// <param name="useTracking">Отслеживать возвращаемые сущности</param>
     /// <param name="cancellationToken">Токен отмены</param>
-    /// <returns>Перечисление сущностей</returns>
-    public virtual async Task<IEnumerable<TEntity>> GetAsync<TOrderKey>(
+    /// <returns>Страница сущностей</returns>
+    public virtual async Task<IPageOf<TEntity>> GetAsync<TOrderKey>(
         Expression<Func<TEntity, bool>>? filter = null,
         Expression<Func<TEntity, TOrderKey>>? orderKeySelector = null,
-        string[]? includeProperties = null,
+        PageQuery? pageQuery = null,
+        string? includeProperties = null,
         bool useTracking = true,
         CancellationToken cancellationToken = default)
     {
@@ -53,25 +56,49 @@ public class BaseEfRepository<TDbContext, TEntity, TKey>(TDbContext dbContext)
             ? DbSet
             : DbSet.AsNoTracking();
 
-        if (filter != null)
+        if (filter is not null)
         {
             query = query.Where(filter);
         }
 
-        if (includeProperties != null)
+        if (includeProperties is not null)
         {
-            foreach (var includeProperty in includeProperties)
+            var propertiesArray = includeProperties.Split(", ");
+
+            foreach (var includeProperty in propertiesArray)
             {
                 query = query.Include(includeProperty);
             }
         }
 
-        if (orderKeySelector != null)
+        if (orderKeySelector is not null)
         {
             query = query.OrderBy(orderKeySelector);
         }
 
-        return await query.ToListAsync(cancellationToken);
+        var itemsCount = query.Count();
+
+        if (pageQuery is not null)
+        {
+            query = query
+                .Skip((pageQuery.Number - 1) * pageQuery.ItemsCount)
+                .Take(pageQuery.ItemsCount);
+        }
+
+        var items = await query.ToListAsync(cancellationToken);
+
+        var pageNumber = pageQuery?.Number ?? 1;
+        var pageItemsCount = pageQuery?.ItemsCount ?? itemsCount;
+        var pagesCount = pageQuery is null ? 1 : (int)Math.Ceiling((double)itemsCount / pageQuery.ItemsCount);
+
+        var resultPage = new PageOf<TEntity>(
+                                itemsCount,
+                                pageItemsCount,
+                                pagesCount,
+                                pageNumber,
+                                items);
+
+        return resultPage;
     }
 
     /// <summary>
@@ -83,14 +110,19 @@ public class BaseEfRepository<TDbContext, TEntity, TKey>(TDbContext dbContext)
     /// <returns>Найденная сущность или null</returns>
     public virtual Task<TEntity?> GetByIdAsync(
         TKey id,
-        string[]? includeProperties = null,
+        string? includeProperties = null,
+        bool useTracking = true,
         CancellationToken cancellationToken = default)
     {
-        IQueryable<TEntity> query = DbSet;
+        IQueryable<TEntity> query = useTracking
+            ? DbSet
+            : DbSet.AsNoTracking();
 
-        if (includeProperties != null)
+        if (includeProperties is not null)
         {
-            foreach (var includeProperty in includeProperties)
+            var propertiesArray = includeProperties.Split(", ");
+
+            foreach (var includeProperty in propertiesArray)
             {
                 query = query.Include(includeProperty);
             }
@@ -133,9 +165,10 @@ public class BaseEfRepository<TDbContext, TEntity, TKey>(TDbContext dbContext)
         if (!_isDisposed)
         {
             DbContext.Dispose();
+
+            _isDisposed = true;
         }
 
-        _isDisposed = true;
         GC.SuppressFinalize(this);
     }
 }
