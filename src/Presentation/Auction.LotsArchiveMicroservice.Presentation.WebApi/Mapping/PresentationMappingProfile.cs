@@ -3,6 +3,7 @@ using Auction.LotsArchiveMicroservice.Application.Commands.Archiving;
 using Auction.LotsArchiveMicroservice.Application.Commands.Buyers;
 using Auction.LotsArchiveMicroservice.Application.Commands.Sellers;
 using Auction.LotsArchiveMicroservice.Application.Models.Archiving;
+using Auction.LotsArchiveMicroservice.Domain.Entities;
 using Auction.LotsArchiveMicroservice.Presentation.WebApi.Contracts.Archiving;
 using AutoMapper;
 

@@ -1,6 +1,5 @@
 using Auction.Common.Application.Commands;
 using Auction.Common.Application.Handlers.Abstractions;
-using Auction.Common.Application.Mapping;
 using Auction.Common.Presentation.Initialization;
 using Auction.Common.Presentation.Mapping;
 using Auction.Common.Presentation.Validation;
@@ -42,7 +41,7 @@ if (string.IsNullOrWhiteSpace(dbConnectionString))
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(
         dbConnectionString,
-        opt => opt.MigrationsAssembly("Auction.LotsArchiveMicroservice.Infrastructure.EntityFramework")));
+        opt => opt.MigrationsAssembly("Auction.LotsArchive.Infrastructure.EntityFramework")));
 
 builder.Services.AddControllers();
 
@@ -84,7 +83,6 @@ builder.Services.AddTransient<IQueryPageHandler<GetSellerUnpurchasedLotsQuery, U
 builder.Services.AddTransient<IQueryPageHandler<GetSellerWithdrawnLotsQuery, WithdrawnLotModel>, GetSellerWithdrawnLotsHandler>();
 
 builder.Services.AddAutoMapper(
-    typeof(CommonApplicationMappingProfile),
     typeof(ApplicationMappingProfile),
     typeof(CommonPresentationMappingProfile),
     typeof(PresentationMappingProfile));

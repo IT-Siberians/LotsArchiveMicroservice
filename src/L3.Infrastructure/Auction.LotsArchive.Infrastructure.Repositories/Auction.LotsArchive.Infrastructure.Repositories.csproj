@@ -7,12 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Application\Auction.LotsArchiveMicroservice.Application\Auction.LotsArchiveMicroservice.Application.csproj" />
     <ProjectReference Include="..\..\Common\Auction.Common.Application\Auction.Common.Application.csproj" />
     <ProjectReference Include="..\..\Common\Auction.Common.Domain\Auction.Common.Domain.csproj" />
     <ProjectReference Include="..\..\Common\Auction.Common.Infrastructure\Auction.Common.Infrastructure.csproj" />
-    <ProjectReference Include="..\..\Domain\Auction.LotsArchiveMicroservice.Domain\Auction.LotsArchiveMicroservice.Domain.csproj" />
-    <ProjectReference Include="..\Auction.LotsArchiveMicroservice.Infrastructure.EntityFramework\Auction.LotsArchiveMicroservice.Infrastructure.EntityFramework.csproj" />
+    <ProjectReference Include="..\..\L1.Domain\Auction.LotsArchive.Domain\Auction.LotsArchive.Domain.csproj" />
+    <ProjectReference Include="..\..\L2.Application\Auction.LotsArchive.Application.Interfaces\Auction.LotsArchive.Application.Interfaces.csproj" />
+    <ProjectReference Include="..\Auction.LotsArchive.Infrastructure.EntityFramework\Auction.LotsArchive.Infrastructure.EntityFramework.csproj" />
   </ItemGroup>
 
 </Project>

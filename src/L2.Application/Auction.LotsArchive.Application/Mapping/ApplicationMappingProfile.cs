@@ -1,4 +1,5 @@
-﻿using Auction.Common.Application.Models;
+﻿using Auction.Common.Application.Commands;
+using Auction.Common.Application.Models;
 using Auction.LotsArchiveMicroservice.Application.Models.Copying;
 using Auction.LotsArchiveMicroservice.Application.Models.Sellers;
 using Auction.LotsArchiveMicroservice.Domain.Entities;
@@ -10,6 +11,8 @@ public class ApplicationMappingProfile : Profile
 {
     public ApplicationMappingProfile()
     {
+        CreateMap<CreatePersonCommand, Person>();
+
         CreateMap<Person, PersonInfoModel>()
             .ForMember(dest => dest.Username, opt => opt.MapFrom(src => src.Username.Value));
         CreateMap<Buyer, PersonInfoModel>()

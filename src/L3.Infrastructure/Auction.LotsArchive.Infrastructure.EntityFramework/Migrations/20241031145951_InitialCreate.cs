@@ -1,9 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-using System;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Auction.LotsArchiveMicroservice.Infrastructure.EntityFramework.Migrations
+namespace Auction.LotsArchive.Infrastructure.EntityFramework.Migrations
 {
     /// <inheritdoc />
     public partial class InitialCreate : Migration
