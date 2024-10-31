@@ -4,7 +4,7 @@ using Auction.Common.Domain.ValueObjects.Numeric;
 using Auction.Common.Domain.ValueObjects.String;
 using System;
 
-namespace Auction.LotsArchiveMicroservice.Domain.Entities;
+namespace Auction.LotsArchive.Domain.Entities;
 
 /// <summary>
 /// Основная информация по лоту

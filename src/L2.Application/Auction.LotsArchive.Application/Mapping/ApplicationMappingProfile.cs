@@ -1,11 +1,11 @@
-﻿using Auction.Common.Application.Commands;
-using Auction.Common.Application.Models;
-using Auction.LotsArchiveMicroservice.Application.Models.Copying;
-using Auction.LotsArchiveMicroservice.Application.Models.Sellers;
-using Auction.LotsArchiveMicroservice.Domain.Entities;
+﻿using Auction.Common.Application.Interfaces.Commands;
+using Auction.Common.Application.Interfaces.Models;
+using Auction.LotsArchive.Application.Models.Copying;
+using Auction.LotsArchive.Application.Models.Sellers;
+using Auction.LotsArchive.Domain.Entities;
 using AutoMapper;
 
-namespace Auction.LotsArchiveMicroservice.Application.Mapping;
+namespace Auction.LotsArchive.Application.Mapping;
 
 public class ApplicationMappingProfile : Profile
 {

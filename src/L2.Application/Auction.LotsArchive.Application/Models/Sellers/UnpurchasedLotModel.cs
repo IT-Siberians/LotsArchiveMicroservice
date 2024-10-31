@@ -1,6 +1,6 @@
-﻿using Auction.Common.Application.Models;
+﻿using Auction.Common.Application.Interfaces.Models;
 
-namespace Auction.LotsArchiveMicroservice.Application.Models.Sellers;
+namespace Auction.LotsArchive.Application.Models.Sellers;
 
 public record UnpurchasedLotModel(
     LotInfoModel LotInfo,

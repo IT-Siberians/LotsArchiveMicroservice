@@ -1,9 +1,9 @@
-﻿using Auction.Common.Application.Commands;
-using Auction.Common.Application.Handlers.Implementations;
-using Auction.LotsArchiveMicroservice.Application.RepositoriesAbstractions;
-using Auction.LotsArchiveMicroservice.Domain.Entities;
+﻿using Auction.Common.Application.Handlers;
+using Auction.Common.Application.Interfaces.Commands;
+using Auction.LotsArchive.Application.Interfaces.Repositories;
+using Auction.LotsArchive.Domain.Entities;
 
-namespace Auction.LotsArchiveMicroservice.Application.Handlers.Persons;
+namespace Auction.LotsArchive.Application.Handlers.Persons;
 
 public class DeletePersonHandler(
     IPersonsRepository repository)

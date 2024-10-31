@@ -1,4 +1,4 @@
-﻿using Auction.Common.Application.Commands;
+﻿using Auction.Common.Application.Interfaces.Commands;
 using Auction.Common.Presentation.Contracts;
 using Auction.Common.Presentation.Controllers;
 using AutoMapper;

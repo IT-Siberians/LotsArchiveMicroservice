@@ -1,4 +1,4 @@
-﻿using Auction.Common.Application.Models;
+﻿using Auction.Common.Application.Interfaces.Models;
 using System;
 
 namespace Auction.LotsArchiveMicroservice.Presentation.WebApi.Contracts.Archiving;

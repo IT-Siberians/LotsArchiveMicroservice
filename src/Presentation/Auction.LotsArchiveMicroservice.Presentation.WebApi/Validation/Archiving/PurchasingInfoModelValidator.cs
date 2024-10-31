@@ -1,4 +1,4 @@
-﻿using Auction.LotsArchiveMicroservice.Application.Models.Archiving;
+﻿using Auction.LotsArchive.Application.Models.Archiving;
 using FluentValidation;
 
 namespace Auction.LotsArchiveMicroservice.Presentation.WebApi.Validation.Archiving;

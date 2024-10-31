@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Auction.LotsArchiveMicroservice.Domain.Entities;
+namespace Auction.LotsArchive.Domain.Entities;
 
 /// <summary>
 /// Продавец

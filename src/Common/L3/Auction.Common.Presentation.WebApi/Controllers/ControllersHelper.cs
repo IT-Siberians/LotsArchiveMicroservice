@@ -1,8 +1,8 @@
-﻿using Auction.Common.Application.Answers;
-using Auction.Common.Application.Commands;
-using Auction.Common.Application.Handlers.Abstractions;
-using Auction.Common.Application.Models;
-using Auction.Common.Application.Pages;
+﻿using Auction.Common.Application.Interfaces.Answers;
+using Auction.Common.Application.Interfaces.Commands;
+using Auction.Common.Application.Interfaces.Handlers;
+using Auction.Common.Application.Interfaces.Models;
+using Auction.Common.Application.Interfaces.Pages;
 using AutoMapper;
 using FluentValidation;
 using FluentValidation.Results;

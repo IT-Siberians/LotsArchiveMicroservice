@@ -1,7 +1,7 @@
-﻿using Auction.Common.Application.Answers;
-using Auction.Common.Application.Handlers.Abstractions;
+﻿using Auction.Common.Application.Interfaces.Answers;
+using Auction.Common.Application.Interfaces.Handlers;
 using Auction.Common.Presentation.Controllers;
-using Auction.LotsArchiveMicroservice.Application.Commands.Archiving;
+using Auction.LotsArchive.Application.Commands.Archiving;
 using Auction.LotsArchiveMicroservice.Presentation.WebApi.Contracts.Archiving;
 using AutoMapper;
 using FluentValidation;
@@ -70,11 +70,11 @@ public class ArchivingController(
         CancellationToken cancellationToken)
     {
         return this.GetCommandActionResultAsync(
-                            command,
-                            handler,
-                            validator,
-                            _mapper,
-                            isCreated: true,
-                            cancellationToken);
+                    command,
+                    handler,
+                    validator,
+                    _mapper,
+                    isCreated: true,
+                    cancellationToken);
     }
 }

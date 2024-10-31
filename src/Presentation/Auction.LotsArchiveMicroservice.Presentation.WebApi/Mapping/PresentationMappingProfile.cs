@@ -1,9 +1,8 @@
-﻿using Auction.Common.Application.Commands;
-using Auction.LotsArchiveMicroservice.Application.Commands.Archiving;
-using Auction.LotsArchiveMicroservice.Application.Commands.Buyers;
-using Auction.LotsArchiveMicroservice.Application.Commands.Sellers;
-using Auction.LotsArchiveMicroservice.Application.Models.Archiving;
-using Auction.LotsArchiveMicroservice.Domain.Entities;
+﻿using Auction.Common.Application.Interfaces.Commands;
+using Auction.LotsArchive.Application.Commands.Archiving;
+using Auction.LotsArchive.Application.Commands.Buyers;
+using Auction.LotsArchive.Application.Commands.Sellers;
+using Auction.LotsArchive.Application.Models.Archiving;
 using Auction.LotsArchiveMicroservice.Presentation.WebApi.Contracts.Archiving;
 using AutoMapper;
 

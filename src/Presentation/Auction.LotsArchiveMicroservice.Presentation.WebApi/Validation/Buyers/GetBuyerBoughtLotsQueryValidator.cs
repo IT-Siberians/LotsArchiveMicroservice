@@ -1,5 +1,5 @@
-﻿using Auction.Common.Application.Commands;
-using Auction.LotsArchiveMicroservice.Application.Commands.Buyers;
+﻿using Auction.Common.Application.Interfaces.Commands;
+using Auction.LotsArchive.Application.Commands.Buyers;
 using FluentValidation;
 
 namespace Auction.LotsArchiveMicroservice.Presentation.WebApi.Validation.Buyers;

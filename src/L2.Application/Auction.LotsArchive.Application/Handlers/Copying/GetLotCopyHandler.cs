@@ -1,14 +1,14 @@
-﻿using Auction.Common.Application.Answers;
-using Auction.Common.Application.Handlers.Abstractions;
-using Auction.LotsArchiveMicroservice.Application.Commands.Copying;
-using Auction.LotsArchiveMicroservice.Application.Models.Copying;
-using Auction.LotsArchiveMicroservice.Application.RepositoriesAbstractions;
+﻿using Auction.Common.Application.Interfaces.Answers;
+using Auction.Common.Application.Interfaces.Handlers;
+using Auction.LotsArchive.Application.Commands.Copying;
+using Auction.LotsArchive.Application.Interfaces.Repositories;
+using Auction.LotsArchive.Application.Models.Copying;
 using AutoMapper;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Auction.LotsArchiveMicroservice.Application.Handlers.Copying;
+namespace Auction.LotsArchive.Application.Handlers.Copying;
 
 public class GetLotCopyHandler(
     IPersonsRepository personsRepository,

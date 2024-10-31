@@ -1,4 +1,4 @@
-﻿namespace Auction.Common.Application.Commands;
+﻿namespace Auction.Common.Application.Interfaces.Commands;
 
 public record FilterQuery(
     string? With,

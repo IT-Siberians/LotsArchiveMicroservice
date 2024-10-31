@@ -1,11 +1,11 @@
 ﻿using Auction.Common.Domain.ValueObjects.Abstract;
 using Auction.Common.Domain.ValueObjects.Numeric;
 using Auction.Common.Domain.ValueObjects.String;
-using Auction.LotsArchiveMicroservice.Domain.Entities;
+using Auction.LotsArchive.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Auction.LotsArchiveMicroservice.Infrastructure.EntityFramework.Configurations;
+namespace Auction.LotsArchive.Infrastructure.EntityFramework.Configurations;
 
 internal class LotConfiguration : IEntityTypeConfiguration<Lot>
 {

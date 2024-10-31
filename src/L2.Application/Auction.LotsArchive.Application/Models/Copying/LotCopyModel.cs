@@ -1,7 +1,7 @@
-﻿using Auction.Common.Application.Models;
-using Auction.LotsArchiveMicroservice.Application.Models.Sellers;
+﻿using Auction.Common.Application.Interfaces.Models;
+using Auction.LotsArchive.Application.Models.Sellers;
 
-namespace Auction.LotsArchiveMicroservice.Application.Models.Copying;
+namespace Auction.LotsArchive.Application.Models.Copying;
 
 public record LotCopyModel(
     LotInfoModel LotInfo,

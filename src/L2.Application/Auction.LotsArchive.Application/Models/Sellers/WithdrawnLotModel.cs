@@ -1,7 +1,7 @@
-﻿using Auction.Common.Application.Models;
+﻿using Auction.Common.Application.Interfaces.Models;
 using System;
 
-namespace Auction.LotsArchiveMicroservice.Application.Models.Sellers;
+namespace Auction.LotsArchive.Application.Models.Sellers;
 
 public record WithdrawnLotModel(
     LotInfoModel LotInfo,

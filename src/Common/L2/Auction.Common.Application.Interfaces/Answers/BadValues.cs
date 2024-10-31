@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Auction.Common.Application.Answers;
+namespace Auction.Common.Application.Interfaces.Answers;
 
 public class BadValues(IDictionary<string, string[]> errors) : IBadBaseAnswer
 {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Auction.LotsArchiveMicroservice.Application.Models.Archiving;
+namespace Auction.LotsArchive.Application.Models.Archiving;
 
 public record PurchasingInfoModel(
     DateTime DateTime,

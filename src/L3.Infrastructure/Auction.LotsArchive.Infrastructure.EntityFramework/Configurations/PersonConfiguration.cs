@@ -1,9 +1,9 @@
 ﻿using Auction.Common.Domain.ValueObjects.String;
-using Auction.LotsArchiveMicroservice.Domain.Entities;
+using Auction.LotsArchive.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Auction.LotsArchiveMicroservice.Infrastructure.EntityFramework.Configurations;
+namespace Auction.LotsArchive.Infrastructure.EntityFramework.Configurations;
 
 internal class PersonConfiguration : IEntityTypeConfiguration<Person>
 {

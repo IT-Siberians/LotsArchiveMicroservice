@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Auction.LotsArchiveMicroservice.Application.Models.Sellers;
+namespace Auction.LotsArchive.Application.Models.Sellers;
 
 public record LotParamsModel(
     decimal StartingPrice,

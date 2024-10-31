@@ -15,4 +15,8 @@
     <ProjectReference Include="..\..\L1.Domain\Auction.LotsArchive.Domain\Auction.LotsArchive.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="QQQ\" />
+  </ItemGroup>
+
 </Project>

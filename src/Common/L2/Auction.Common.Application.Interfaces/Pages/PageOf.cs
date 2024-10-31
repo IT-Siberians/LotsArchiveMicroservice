@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Auction.Common.Application.Pages;
+namespace Auction.Common.Application.Interfaces.Pages;
 
 public record PageOf<TItem>(
     int ItemsCount,

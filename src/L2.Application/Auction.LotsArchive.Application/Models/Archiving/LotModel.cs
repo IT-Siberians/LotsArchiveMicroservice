@@ -1,7 +1,7 @@
-﻿using Auction.Common.Application.Models;
+﻿using Auction.Common.Application.Interfaces.Models;
 using System;
 
-namespace Auction.LotsArchiveMicroservice.Application.Models.Archiving;
+namespace Auction.LotsArchive.Application.Models.Archiving;
 
 public record LotModel(
     Guid Id,

@@ -1,12 +1,12 @@
-﻿using Auction.Common.Application.Handlers.Implementations;
-using Auction.LotsArchiveMicroservice.Application.Commands.Sellers;
-using Auction.LotsArchiveMicroservice.Application.Models.Sellers;
-using Auction.LotsArchiveMicroservice.Application.RepositoriesAbstractions;
-using Auction.LotsArchiveMicroservice.Domain.Entities;
+﻿using Auction.Common.Application.Handlers;
+using Auction.LotsArchive.Application.Commands.Sellers;
+using Auction.LotsArchive.Application.Interfaces.Repositories;
+using Auction.LotsArchive.Application.Models.Sellers;
+using Auction.LotsArchive.Domain.Entities;
 using AutoMapper;
 using System;
 
-namespace Auction.LotsArchiveMicroservice.Application.Handlers.Sellers;
+namespace Auction.LotsArchive.Application.Handlers.Sellers;
 
 public class GetSellerUnpurchasedLotsHandler
     : GetPageHandler<GetSellerUnpurchasedLotsQuery, Lot, UnpurchasedLotModel, ILotsRepository, DateTime>
@@ -30,13 +30,13 @@ public class GetSellerUnpurchasedLotsHandler
                 useTracking: false)
     {
         Filter = e => Query == null ||
-                        (e.Seller.Id == Query.SellerId
+                        e.Seller.Id == Query.SellerId
                         && e.IsUnpurchased
                         && (Query.Filter == null || Query.Filter.With == null || Query.Filter.With == ""
                                                         || e.Title.Value.Contains(Query.Filter.With)
                                                         || e.Description.Value.Contains(Query.Filter.With))
                         && (Query.Filter == null || Query.Filter.Without == null || Query.Filter.Without == ""
-                                                        || (!e.Title.Value.Contains(Query.Filter.Without)
-                                                                && !e.Description.Value.Contains(Query.Filter.Without))));
+                                                        || !e.Title.Value.Contains(Query.Filter.Without)
+                                                                && !e.Description.Value.Contains(Query.Filter.Without));
     }
 }

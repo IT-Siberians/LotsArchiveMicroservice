@@ -1,8 +1,8 @@
-﻿using Auction.Common.Application.Answers;
-using Auction.Common.Application.Handlers.Abstractions;
+﻿using Auction.Common.Application.Interfaces.Answers;
+using Auction.Common.Application.Interfaces.Handlers;
 using Auction.Common.Presentation.Controllers;
-using Auction.LotsArchiveMicroservice.Application.Commands.Copying;
-using Auction.LotsArchiveMicroservice.Application.Models.Copying;
+using Auction.LotsArchive.Application.Commands.Copying;
+using Auction.LotsArchive.Application.Models.Copying;
 using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

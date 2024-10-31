@@ -1,7 +1,7 @@
-﻿using Auction.Common.Application.Commands;
+﻿using Auction.Common.Application.Interfaces.Commands;
 using System;
 
-namespace Auction.LotsArchiveMicroservice.Application.Commands.Buyers;
+namespace Auction.LotsArchive.Application.Commands.Buyers;
 
 public record GetBuyerBoughtLotsQuery(
     Guid BuyerId,

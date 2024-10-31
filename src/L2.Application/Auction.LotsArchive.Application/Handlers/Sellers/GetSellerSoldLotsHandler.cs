@@ -1,13 +1,13 @@
-﻿using Auction.Common.Application.Handlers.Implementations;
-using Auction.Common.Application.Models;
-using Auction.LotsArchiveMicroservice.Application.Commands.Sellers;
-using Auction.LotsArchiveMicroservice.Application.Models.Sellers;
-using Auction.LotsArchiveMicroservice.Application.RepositoriesAbstractions;
-using Auction.LotsArchiveMicroservice.Domain.Entities;
+﻿using Auction.Common.Application.Handlers;
+using Auction.Common.Application.Interfaces.Models;
+using Auction.LotsArchive.Application.Commands.Sellers;
+using Auction.LotsArchive.Application.Interfaces.Repositories;
+using Auction.LotsArchive.Application.Models.Sellers;
+using Auction.LotsArchive.Domain.Entities;
 using AutoMapper;
 using System;
 
-namespace Auction.LotsArchiveMicroservice.Application.Handlers.Sellers;
+namespace Auction.LotsArchive.Application.Handlers.Sellers;
 
 public class GetSellerSoldLotsHandler
     : GetPageHandler<GetSellerSoldLotsQuery, RepurchasedLot, SoldLotModel, IRepurchasedLotsRepository, DateTime>
@@ -34,14 +34,14 @@ public class GetSellerSoldLotsHandler
                 useTracking: false)
     {
         Filter = e => Query == null ||
-                        (e.Lot.Seller.Id == Query.SellerId
+                        e.Lot.Seller.Id == Query.SellerId
                         && (Query.Filter == null || Query.Filter.With == null || Query.Filter.With == ""
                                                         || e.Lot.Title.Value.Contains(Query.Filter.With)
                                                         || e.Lot.Description.Value.Contains(Query.Filter.With)
                                                         || e.Buyer.PersonInfo.Username.Value.Contains(Query.Filter.With))
                         && (Query.Filter == null || Query.Filter.Without == null || Query.Filter.Without == ""
-                                                        || (!e.Lot.Title.Value.Contains(Query.Filter.Without)
+                                                        || !e.Lot.Title.Value.Contains(Query.Filter.Without)
                                                                 && !e.Lot.Description.Value.Contains(Query.Filter.Without)
-                                                                && !e.Buyer.PersonInfo.Username.Value.Contains(Query.Filter.Without))));
+                                                                && !e.Buyer.PersonInfo.Username.Value.Contains(Query.Filter.Without));
     }
 }

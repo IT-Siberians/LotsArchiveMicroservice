@@ -1,10 +1,10 @@
-﻿using Auction.Common.Infrastructure.RepositoriesImplementations.EntityFramework;
-using Auction.LotsArchiveMicroservice.Application.RepositoriesAbstractions;
-using Auction.LotsArchiveMicroservice.Domain.Entities;
-using Auction.LotsArchiveMicroservice.Infrastructure.EntityFramework;
+﻿using Auction.Common.Infrastructure.Repositories.EntityFramework;
+using Auction.LotsArchive.Application.Interfaces.Repositories;
+using Auction.LotsArchive.Domain.Entities;
+using Auction.LotsArchive.Infrastructure.EntityFramework;
 using System;
 
-namespace Auction.LotsArchiveMicroservice.Infrastructure.RepositoriesImplementations.EntityFramework;
+namespace Auction.LotsArchive.Infrastructure.Repositories.EntityFramework;
 
 public class PersonsRepository(ApplicationDbContext dbContext)
     : BaseEfRepositoryWithDelete<ApplicationDbContext, Person, Guid>(dbContext),

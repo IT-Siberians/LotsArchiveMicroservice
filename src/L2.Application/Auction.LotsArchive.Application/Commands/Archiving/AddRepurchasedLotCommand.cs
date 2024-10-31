@@ -1,6 +1,6 @@
-﻿using Auction.LotsArchiveMicroservice.Application.Models.Archiving;
+﻿using Auction.LotsArchive.Application.Models.Archiving;
 
-namespace Auction.LotsArchiveMicroservice.Application.Commands.Archiving;
+namespace Auction.LotsArchive.Application.Commands.Archiving;
 
 public record AddRepurchasedLotCommand(
     LotModel Lot,

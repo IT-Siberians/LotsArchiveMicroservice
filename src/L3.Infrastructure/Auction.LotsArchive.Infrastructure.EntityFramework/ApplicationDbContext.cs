@@ -1,7 +1,7 @@
-﻿using Auction.LotsArchiveMicroservice.Domain.Entities;
+﻿using Auction.LotsArchive.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Auction.LotsArchiveMicroservice.Infrastructure.EntityFramework;
+namespace Auction.LotsArchive.Infrastructure.EntityFramework;
 
 public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
     : DbContext(options)

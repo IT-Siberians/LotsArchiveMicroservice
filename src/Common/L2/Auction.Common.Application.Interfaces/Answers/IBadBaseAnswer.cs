@@ -1,4 +1,4 @@
-﻿namespace Auction.Common.Application.Answers;
+﻿namespace Auction.Common.Application.Interfaces.Answers;
 
 public interface IBadBaseAnswer : IAnswer;
 

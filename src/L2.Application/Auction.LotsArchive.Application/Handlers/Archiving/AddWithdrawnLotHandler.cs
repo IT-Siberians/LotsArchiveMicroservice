@@ -1,15 +1,15 @@
-﻿using Auction.Common.Application.Answers;
-using Auction.Common.Application.Handlers.Abstractions;
+﻿using Auction.Common.Application.Interfaces.Answers;
+using Auction.Common.Application.Interfaces.Handlers;
 using Auction.Common.Domain.ValueObjects.Numeric;
 using Auction.Common.Domain.ValueObjects.String;
-using Auction.LotsArchiveMicroservice.Application.Commands.Archiving;
-using Auction.LotsArchiveMicroservice.Application.RepositoriesAbstractions;
-using Auction.LotsArchiveMicroservice.Domain.Entities;
+using Auction.LotsArchive.Application.Commands.Archiving;
+using Auction.LotsArchive.Application.Interfaces.Repositories;
+using Auction.LotsArchive.Domain.Entities;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Auction.LotsArchiveMicroservice.Application.Handlers.Archiving;
+namespace Auction.LotsArchive.Application.Handlers.Archiving;
 
 public class AddWithdrawnLotHandler(
     ILotsRepository lotsRepository,

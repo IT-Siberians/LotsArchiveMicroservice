@@ -1,4 +1,4 @@
-﻿using Auction.Common.Application.Commands;
+﻿using Auction.Common.Application.Interfaces.Commands;
 using FluentValidation;
 
 namespace Auction.Common.Presentation.Validation;

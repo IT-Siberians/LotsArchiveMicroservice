@@ -3,7 +3,7 @@ using Auction.Common.Domain.EntitiesExceptions;
 using Auction.Common.Domain.ValueObjects.String;
 using System;
 
-namespace Auction.LotsArchiveMicroservice.Domain.Entities;
+namespace Auction.LotsArchive.Domain.Entities;
 
 /// <summary>
 /// Пользователь
