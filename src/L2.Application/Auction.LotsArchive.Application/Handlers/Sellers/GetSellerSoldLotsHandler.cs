@@ -1,8 +1,8 @@
 ﻿using Auction.Common.Application.Handlers;
 using Auction.Common.Application.Interfaces.Models;
-using Auction.LotsArchive.Application.Commands.Sellers;
+using Auction.LotsArchive.Application.Interfaces.Commands.Sellers;
+using Auction.LotsArchive.Application.Interfaces.Models.Sellers;
 using Auction.LotsArchive.Application.Interfaces.Repositories;
-using Auction.LotsArchive.Application.Models.Sellers;
 using Auction.LotsArchive.Domain.Entities;
 using AutoMapper;
 using System;

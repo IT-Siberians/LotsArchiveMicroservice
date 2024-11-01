@@ -5,10 +5,6 @@ VisualStudioVersion = 17.10.34928.147
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{21262FA8-4B4E-4DD2-81AF-C057174881C0}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{4B484274-190E-4134-AE31-4144FBDEBA1E}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auction.LotsArchiveMicroservice.Presentation.WebApi", "Presentation\Auction.LotsArchiveMicroservice.Presentation.WebApi\Auction.LotsArchiveMicroservice.Presentation.WebApi.csproj", "{39617F5C-C04A-4F63-B76D-5DC3F530BC2F}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "L1.Domain", "L1.Domain", "{C95B658E-F7B0-409F-B4C5-144F00D35EAD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "L2.Application", "L2.Application", "{65FF2B96-8B7C-4629-9306-577D2BD91164}"
@@ -35,19 +31,25 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "L2", "L2", "{4221F56D-8417-
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "L3", "L3", "{D8DF842E-10B6-4FDB-87A8-A9CABAF34A1F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auction.Common.Domain", "Common\L1\Auction.Common.Domain\Auction.Common.Domain.csproj", "{A1A3434C-000A-4891-AD24-AE145BBECE5C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auction.Common.Domain", "Common\L1\Auction.Common.Domain\Auction.Common.Domain.csproj", "{A1A3434C-000A-4891-AD24-AE145BBECE5C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auction.Common.Application", "Common\L2\Auction.Common.Application\Auction.Common.Application.csproj", "{B83E3BDA-D136-4649-9671-152C25684D89}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auction.Common.Application", "Common\L2\Auction.Common.Application\Auction.Common.Application.csproj", "{B83E3BDA-D136-4649-9671-152C25684D89}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auction.Common.Application.Interfaces", "Common\L2\Auction.Common.Application.Interfaces\Auction.Common.Application.Interfaces.csproj", "{973BF52E-47CA-44F4-8952-31343502C259}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auction.Common.Application.Interfaces", "Common\L2\Auction.Common.Application.Interfaces\Auction.Common.Application.Interfaces.csproj", "{973BF52E-47CA-44F4-8952-31343502C259}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auction.Common.Infrastructure.Repositories", "Common\L3\Auction.Common.Infrastructure.Repositories\Auction.Common.Infrastructure.Repositories.csproj", "{7307B532-F6FE-4985-9255-EAE2D506ABDA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auction.Common.Infrastructure.Repositories", "Common\L3\Auction.Common.Infrastructure.Repositories\Auction.Common.Infrastructure.Repositories.csproj", "{7307B532-F6FE-4985-9255-EAE2D506ABDA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auction.Common.Presentation.Validation", "Common\L3\Auction.Common.Presentation.Validation\Auction.Common.Presentation.Validation.csproj", "{0131AA4B-4DDB-43CD-95DF-4CE252B405EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auction.Common.Presentation.Validation", "Common\L3\Auction.Common.Presentation.Validation\Auction.Common.Presentation.Validation.csproj", "{0131AA4B-4DDB-43CD-95DF-4CE252B405EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auction.Common.Infrastructure.Initialization", "Common\L3\Auction.Common.Infrastructure.Initialization\Auction.Common.Infrastructure.Initialization.csproj", "{93817F81-1D92-435C-9BB7-85E90A579955}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auction.Common.Infrastructure.Initialization", "Common\L3\Auction.Common.Infrastructure.Initialization\Auction.Common.Infrastructure.Initialization.csproj", "{93817F81-1D92-435C-9BB7-85E90A579955}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auction.Common.Presentation.WebApi", "Common\L3\Auction.Common.Presentation.WebApi\Auction.Common.Presentation.WebApi.csproj", "{209D0227-5F18-46BB-8273-240D5D95716A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auction.Common.Presentation.WebApi", "Common\L3\Auction.Common.Presentation.WebApi\Auction.Common.Presentation.WebApi.csproj", "{209D0227-5F18-46BB-8273-240D5D95716A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auction.LotsArchive.Presentation.Validation", "L3.Presentation\Auction.LotsArchive.Presentation.Validation\Auction.LotsArchive.Presentation.Validation.csproj", "{E96EBA42-5BDC-4F1E-AB78-26B5BDE0DF03}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auction.LotsArchive.Presentation.WebApi", "L3.Presentation\Auction.LotsArchive.Presentation.WebApi\Auction.LotsArchive.Presentation.WebApi.csproj", "{844D2565-B6F1-4CCB-BC62-6D604CE0E192}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auction.LotsArchive", "L4.Sturtup\Auction.LotsArchive\Auction.LotsArchive.csproj", "{0F8FA983-8682-4661-9DCD-8AB29624A829}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,10 +57,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{39617F5C-C04A-4F63-B76D-5DC3F530BC2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{39617F5C-C04A-4F63-B76D-5DC3F530BC2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{39617F5C-C04A-4F63-B76D-5DC3F530BC2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{39617F5C-C04A-4F63-B76D-5DC3F530BC2F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D28245F2-BCB3-4E2D-B7F1-C7170259780C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D28245F2-BCB3-4E2D-B7F1-C7170259780C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D28245F2-BCB3-4E2D-B7F1-C7170259780C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -107,12 +105,23 @@ Global
 		{209D0227-5F18-46BB-8273-240D5D95716A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{209D0227-5F18-46BB-8273-240D5D95716A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{209D0227-5F18-46BB-8273-240D5D95716A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E96EBA42-5BDC-4F1E-AB78-26B5BDE0DF03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E96EBA42-5BDC-4F1E-AB78-26B5BDE0DF03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E96EBA42-5BDC-4F1E-AB78-26B5BDE0DF03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E96EBA42-5BDC-4F1E-AB78-26B5BDE0DF03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{844D2565-B6F1-4CCB-BC62-6D604CE0E192}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{844D2565-B6F1-4CCB-BC62-6D604CE0E192}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{844D2565-B6F1-4CCB-BC62-6D604CE0E192}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{844D2565-B6F1-4CCB-BC62-6D604CE0E192}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F8FA983-8682-4661-9DCD-8AB29624A829}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F8FA983-8682-4661-9DCD-8AB29624A829}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F8FA983-8682-4661-9DCD-8AB29624A829}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F8FA983-8682-4661-9DCD-8AB29624A829}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{39617F5C-C04A-4F63-B76D-5DC3F530BC2F} = {4B484274-190E-4134-AE31-4144FBDEBA1E}
 		{D28245F2-BCB3-4E2D-B7F1-C7170259780C} = {C95B658E-F7B0-409F-B4C5-144F00D35EAD}
 		{B64E0445-3500-4D9F-B6F5-14B3C905298F} = {65FF2B96-8B7C-4629-9306-577D2BD91164}
 		{4738DED7-7E4B-4EF7-A5BF-47DF0146B31B} = {65FF2B96-8B7C-4629-9306-577D2BD91164}
@@ -128,6 +137,9 @@ Global
 		{0131AA4B-4DDB-43CD-95DF-4CE252B405EB} = {D8DF842E-10B6-4FDB-87A8-A9CABAF34A1F}
 		{93817F81-1D92-435C-9BB7-85E90A579955} = {D8DF842E-10B6-4FDB-87A8-A9CABAF34A1F}
 		{209D0227-5F18-46BB-8273-240D5D95716A} = {D8DF842E-10B6-4FDB-87A8-A9CABAF34A1F}
+		{E96EBA42-5BDC-4F1E-AB78-26B5BDE0DF03} = {12A6232A-E9B2-473D-8659-232D049A0972}
+		{844D2565-B6F1-4CCB-BC62-6D604CE0E192} = {12A6232A-E9B2-473D-8659-232D049A0972}
+		{0F8FA983-8682-4661-9DCD-8AB29624A829} = {150D71F7-48D7-4001-B858-30492542714C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3E40F95C-9495-45D3-A319-D6FFF5F5FEFD}

@@ -18,19 +18,4 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.9.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\Common\L1\Auction.Common.Domain\Auction.Common.Domain.csproj" />
-    <ProjectReference Include="..\..\Common\L2\Auction.Common.Application.Interfaces\Auction.Common.Application.Interfaces.csproj" />
-    <ProjectReference Include="..\..\Common\L2\Auction.Common.Application\Auction.Common.Application.csproj" />
-    <ProjectReference Include="..\..\Common\L3\Auction.Common.Infrastructure.Initialization\Auction.Common.Infrastructure.Initialization.csproj" />
-    <ProjectReference Include="..\..\Common\L3\Auction.Common.Infrastructure.Repositories\Auction.Common.Infrastructure.Repositories.csproj" />
-    <ProjectReference Include="..\..\Common\L3\Auction.Common.Presentation.Validation\Auction.Common.Presentation.Validation.csproj" />
-    <ProjectReference Include="..\..\Common\L3\Auction.Common.Presentation.WebApi\Auction.Common.Presentation.WebApi.csproj" />
-    <ProjectReference Include="..\..\L1.Domain\Auction.LotsArchive.Domain\Auction.LotsArchive.Domain.csproj" />
-    <ProjectReference Include="..\..\L2.Application\Auction.LotsArchive.Application.Interfaces\Auction.LotsArchive.Application.Interfaces.csproj" />
-    <ProjectReference Include="..\..\L2.Application\Auction.LotsArchive.Application\Auction.LotsArchive.Application.csproj" />
-    <ProjectReference Include="..\..\L3.Infrastructure\Auction.LotsArchive.Infrastructure.EntityFramework\Auction.LotsArchive.Infrastructure.EntityFramework.csproj" />
-    <ProjectReference Include="..\..\L3.Infrastructure\Auction.LotsArchive.Infrastructure.Repositories\Auction.LotsArchive.Infrastructure.Repositories.csproj" />
-  </ItemGroup>
-
 </Project>

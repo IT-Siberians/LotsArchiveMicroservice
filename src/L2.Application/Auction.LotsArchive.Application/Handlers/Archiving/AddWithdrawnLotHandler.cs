@@ -2,7 +2,7 @@
 using Auction.Common.Application.Interfaces.Handlers;
 using Auction.Common.Domain.ValueObjects.Numeric;
 using Auction.Common.Domain.ValueObjects.String;
-using Auction.LotsArchive.Application.Commands.Archiving;
+using Auction.LotsArchive.Application.Interfaces.Commands.Archiving;
 using Auction.LotsArchive.Application.Interfaces.Repositories;
 using Auction.LotsArchive.Domain.Entities;
 using System;

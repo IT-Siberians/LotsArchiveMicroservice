@@ -1,7 +1,7 @@
 ﻿using Auction.Common.Application.Interfaces.Commands;
 using Auction.Common.Application.Interfaces.Models;
-using Auction.LotsArchive.Application.Models.Copying;
-using Auction.LotsArchive.Application.Models.Sellers;
+using Auction.LotsArchive.Application.Interfaces.Models.Copying;
+using Auction.LotsArchive.Application.Interfaces.Models.Sellers;
 using Auction.LotsArchive.Domain.Entities;
 using AutoMapper;
 

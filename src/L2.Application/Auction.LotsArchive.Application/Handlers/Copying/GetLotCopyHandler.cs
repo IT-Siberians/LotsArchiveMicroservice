@@ -1,8 +1,8 @@
 ﻿using Auction.Common.Application.Interfaces.Answers;
 using Auction.Common.Application.Interfaces.Handlers;
-using Auction.LotsArchive.Application.Commands.Copying;
+using Auction.LotsArchive.Application.Interfaces.Commands.Copying;
+using Auction.LotsArchive.Application.Interfaces.Models.Copying;
 using Auction.LotsArchive.Application.Interfaces.Repositories;
-using Auction.LotsArchive.Application.Models.Copying;
 using AutoMapper;
 using System;
 using System.Threading;
