@@ -1,5 +1,5 @@
-﻿using Auction.Common.Application.Interfaces.Commands;
-using Auction.LotsArchive.Application.Interfaces.Commands.Sellers;
+﻿using Auction.Common.Application.L2.Interfaces.Commands;
+using Auction.LotsArchive.Application.L2.Interfaces.Commands.Sellers;
 using FluentValidation;
 
 namespace Auction.LotsArchive.Presentation.Validation.Sellers;

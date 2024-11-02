@@ -1,10 +1,10 @@
-﻿using Auction.Common.Application.Interfaces.Answers;
-using Auction.Common.Application.Interfaces.Commands;
-using Auction.Common.Application.Interfaces.Handlers;
-using Auction.Common.Application.Interfaces.Pages;
+﻿using Auction.Common.Application.L2.Interfaces.Answers;
+using Auction.Common.Application.L2.Interfaces.Commands;
+using Auction.Common.Application.L2.Interfaces.Handlers;
+using Auction.Common.Application.L2.Interfaces.Pages;
 using Auction.Common.Presentation.Controllers;
-using Auction.LotsArchive.Application.Interfaces.Commands.Sellers;
-using Auction.LotsArchive.Application.Interfaces.Models.Sellers;
+using Auction.LotsArchive.Application.L1.Models.Sellers;
+using Auction.LotsArchive.Application.L2.Interfaces.Commands.Sellers;
 using AutoMapper;
 using FluentValidation;
 using Microsoft.AspNetCore.Http;

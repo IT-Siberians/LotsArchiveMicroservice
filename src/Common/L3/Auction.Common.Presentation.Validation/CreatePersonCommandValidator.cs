@@ -1,4 +1,4 @@
-﻿using Auction.Common.Application.Interfaces.Commands;
+﻿using Auction.Common.Application.L2.Interfaces.Commands;
 using Auction.Common.Domain.ValueObjects.String;
 using FluentValidation;
 

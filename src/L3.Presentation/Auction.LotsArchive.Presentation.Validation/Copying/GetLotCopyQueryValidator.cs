@@ -1,4 +1,4 @@
-﻿using Auction.LotsArchive.Application.Interfaces.Commands.Copying;
+﻿using Auction.LotsArchive.Application.L2.Interfaces.Commands.Copying;
 using FluentValidation;
 
 namespace Auction.LotsArchive.Presentation.Validation.Copying;

@@ -1,5 +1,5 @@
-﻿using Auction.Common.Application.Interfaces.Commands;
-using Auction.Common.Application.Interfaces.Models;
+﻿using Auction.Common.Application.L1.Models;
+using Auction.Common.Application.L2.Interfaces.Commands;
 using Auction.Common.Presentation.Contracts;
 using AutoMapper;
 

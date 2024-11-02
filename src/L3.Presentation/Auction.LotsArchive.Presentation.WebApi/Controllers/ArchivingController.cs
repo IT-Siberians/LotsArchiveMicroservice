@@ -1,7 +1,7 @@
-﻿using Auction.Common.Application.Interfaces.Answers;
-using Auction.Common.Application.Interfaces.Handlers;
+﻿using Auction.Common.Application.L2.Interfaces.Answers;
+using Auction.Common.Application.L2.Interfaces.Handlers;
 using Auction.Common.Presentation.Controllers;
-using Auction.LotsArchive.Application.Interfaces.Commands.Archiving;
+using Auction.LotsArchive.Application.L2.Interfaces.Commands.Archiving;
 using Auction.LotsArchive.Presentation.WebApi.Contracts.Archiving;
 using AutoMapper;
 using FluentValidation;

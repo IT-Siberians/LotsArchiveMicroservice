@@ -11,7 +11,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\L2\Auction.Common.Application.Interfaces\Auction.Common.Application.Interfaces.csproj" />
+	  <ProjectReference Include="..\..\L2\Auction.Common.Application.L2.Interfaces\Auction.Common.Application.L2.Interfaces.csproj" />
 	</ItemGroup>
 
 </Project>

@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\L2\Auction.Common.Application\Auction.Common.Application.csproj" />
+    <ProjectReference Include="..\..\L2\Auction.Common.Application.L3.Logic\Auction.Common.Application.L3.Logic.csproj" />
   </ItemGroup>
 
 </Project>

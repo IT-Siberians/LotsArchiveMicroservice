@@ -1,6 +1,6 @@
-﻿using Auction.Common.Application.Interfaces.Commands;
-using Auction.Common.Application.Interfaces.Pages;
-using Auction.Common.Application.Interfaces.Repositories.Base;
+﻿using Auction.Common.Application.L2.Interfaces.Commands;
+using Auction.Common.Application.L2.Interfaces.Pages;
+using Auction.Common.Application.L2.Interfaces.Repositories.Base;
 using Auction.Common.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;

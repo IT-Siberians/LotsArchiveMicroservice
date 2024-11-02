@@ -1,5 +1,5 @@
 ﻿using Auction.Common.Infrastructure.Repositories.InMemory;
-using Auction.LotsArchive.Application.Interfaces.Repositories;
+using Auction.LotsArchive.Application.L2.Interfaces.Repositories;
 using Auction.LotsArchive.Domain.Entities;
 using System;
 using System.Collections.Generic;

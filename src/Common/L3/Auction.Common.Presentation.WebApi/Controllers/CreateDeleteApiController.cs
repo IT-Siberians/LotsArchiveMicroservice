@@ -1,6 +1,6 @@
-﻿using Auction.Common.Application.Interfaces.Answers;
-using Auction.Common.Application.Interfaces.Handlers;
-using Auction.Common.Application.Interfaces.Models;
+﻿using Auction.Common.Application.L1.Models;
+using Auction.Common.Application.L2.Interfaces.Answers;
+using Auction.Common.Application.L2.Interfaces.Handlers;
 using AutoMapper;
 using FluentValidation;
 using Microsoft.AspNetCore.Http;

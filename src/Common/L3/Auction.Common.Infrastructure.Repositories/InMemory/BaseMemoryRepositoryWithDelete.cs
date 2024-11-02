@@ -1,4 +1,4 @@
-﻿using Auction.Common.Application.Interfaces.Repositories.Base;
+﻿using Auction.Common.Application.L2.Interfaces.Repositories.Base;
 using Auction.Common.Domain.Entities;
 using System;
 using System.Collections.Generic;

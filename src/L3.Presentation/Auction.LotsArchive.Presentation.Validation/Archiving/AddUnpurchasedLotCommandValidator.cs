@@ -1,5 +1,5 @@
-﻿using Auction.LotsArchive.Application.Interfaces.Commands.Archiving;
-using Auction.LotsArchive.Application.Interfaces.Models.Archiving;
+﻿using Auction.LotsArchive.Application.L1.Models.Archiving;
+using Auction.LotsArchive.Application.L2.Interfaces.Commands.Archiving;
 using FluentValidation;
 
 namespace Auction.LotsArchive.Presentation.Validation.Archiving;
