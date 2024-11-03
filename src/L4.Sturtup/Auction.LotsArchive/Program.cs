@@ -3,6 +3,7 @@ using Auction.Common.Application.L2.Interfaces.Handlers;
 using Auction.Common.Presentation.Initialization;
 using Auction.Common.Presentation.Mapping;
 using Auction.Common.Presentation.Validation;
+using Auction.LotsArchive;
 using Auction.LotsArchive.Application.L1.Models.Buyers;
 using Auction.LotsArchive.Application.L1.Models.Copying;
 using Auction.LotsArchive.Application.L1.Models.Sellers;
@@ -78,6 +79,8 @@ builder.Services.AddTransient<IQueryPageHandler<GetSellerSoldLotsQuery, SoldLotM
 builder.Services.AddTransient<IQueryPageHandler<GetSellerUnpurchasedLotsQuery, UnpurchasedLotModel>, GetSellerUnpurchasedLotsHandler>();
 builder.Services.AddTransient<IQueryPageHandler<GetSellerWithdrawnLotsQuery, WithdrawnLotModel>, GetSellerWithdrawnLotsHandler>();
 
+builder.Services.AddTransient<DbInitializer>();
+
 builder.Services.AddAutoMapper(
     typeof(ApplicationMappingProfile),
     typeof(CommonPresentationMappingProfile),
@@ -97,5 +100,11 @@ app.UseAuthorization();
 app.MapControllers();
 
 await app.MigrateAsync<ApplicationDbContext>();
+
+if (app.Environment.IsDevelopment())
+{
+    await app.InitAsync<DbInitializer>();
+}
+
 
 app.Run();
