@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Auction.LotsArchive.Infrastructure.EntityFramework.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241031145951_InitialCreate")]
+    [Migration("20241103095518_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -25,7 +25,7 @@ namespace Auction.LotsArchive.Infrastructure.EntityFramework.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("Auction.LotsArchiveMicroservice.Domain.Entities.Buyer", b =>
+            modelBuilder.Entity("Auction.LotsArchive.Domain.Entities.Buyer", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uuid");
@@ -35,7 +35,7 @@ namespace Auction.LotsArchive.Infrastructure.EntityFramework.Migrations
                     b.ToTable("Persons", (string)null);
                 });
 
-            modelBuilder.Entity("Auction.LotsArchiveMicroservice.Domain.Entities.Lot", b =>
+            modelBuilder.Entity("Auction.LotsArchive.Domain.Entities.Lot", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -71,7 +71,7 @@ namespace Auction.LotsArchive.Infrastructure.EntityFramework.Migrations
                     b.ToTable("Lots");
                 });
 
-            modelBuilder.Entity("Auction.LotsArchiveMicroservice.Domain.Entities.Person", b =>
+            modelBuilder.Entity("Auction.LotsArchive.Domain.Entities.Person", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -85,7 +85,7 @@ namespace Auction.LotsArchive.Infrastructure.EntityFramework.Migrations
                     b.ToTable("Persons");
                 });
 
-            modelBuilder.Entity("Auction.LotsArchiveMicroservice.Domain.Entities.RepurchasedLot", b =>
+            modelBuilder.Entity("Auction.LotsArchive.Domain.Entities.RepurchasedLot", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -111,7 +111,7 @@ namespace Auction.LotsArchive.Infrastructure.EntityFramework.Migrations
                     b.ToTable("RepurchasedLots");
                 });
 
-            modelBuilder.Entity("Auction.LotsArchiveMicroservice.Domain.Entities.Seller", b =>
+            modelBuilder.Entity("Auction.LotsArchive.Domain.Entities.Seller", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uuid");
@@ -121,7 +121,7 @@ namespace Auction.LotsArchive.Infrastructure.EntityFramework.Migrations
                     b.ToTable("Persons", (string)null);
                 });
 
-            modelBuilder.Entity("Auction.LotsArchiveMicroservice.Domain.Entities.WithdrawnLot", b =>
+            modelBuilder.Entity("Auction.LotsArchive.Domain.Entities.WithdrawnLot", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -142,20 +142,20 @@ namespace Auction.LotsArchive.Infrastructure.EntityFramework.Migrations
                     b.ToTable("WithdrawnLots");
                 });
 
-            modelBuilder.Entity("Auction.LotsArchiveMicroservice.Domain.Entities.Buyer", b =>
+            modelBuilder.Entity("Auction.LotsArchive.Domain.Entities.Buyer", b =>
                 {
-                    b.HasOne("Auction.LotsArchiveMicroservice.Domain.Entities.Person", "PersonInfo")
+                    b.HasOne("Auction.LotsArchive.Domain.Entities.Person", "PersonInfo")
                         .WithOne("BuyerInfo")
-                        .HasForeignKey("Auction.LotsArchiveMicroservice.Domain.Entities.Buyer", "Id")
+                        .HasForeignKey("Auction.LotsArchive.Domain.Entities.Buyer", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("PersonInfo");
                 });
 
-            modelBuilder.Entity("Auction.LotsArchiveMicroservice.Domain.Entities.Lot", b =>
+            modelBuilder.Entity("Auction.LotsArchive.Domain.Entities.Lot", b =>
                 {
-                    b.HasOne("Auction.LotsArchiveMicroservice.Domain.Entities.Seller", "Seller")
+                    b.HasOne("Auction.LotsArchive.Domain.Entities.Seller", "Seller")
                         .WithMany("_allLots")
                         .HasForeignKey("SellerId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -247,7 +247,7 @@ namespace Auction.LotsArchive.Infrastructure.EntityFramework.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Auction.LotsArchiveMicroservice.Domain.Entities.Person", b =>
+            modelBuilder.Entity("Auction.LotsArchive.Domain.Entities.Person", b =>
                 {
                     b.OwnsOne("Auction.Common.Domain.ValueObjects.String.Username", "Username", b1 =>
                         {
@@ -272,17 +272,17 @@ namespace Auction.LotsArchive.Infrastructure.EntityFramework.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Auction.LotsArchiveMicroservice.Domain.Entities.RepurchasedLot", b =>
+            modelBuilder.Entity("Auction.LotsArchive.Domain.Entities.RepurchasedLot", b =>
                 {
-                    b.HasOne("Auction.LotsArchiveMicroservice.Domain.Entities.Buyer", "Buyer")
+                    b.HasOne("Auction.LotsArchive.Domain.Entities.Buyer", "Buyer")
                         .WithMany("_boughtLots")
                         .HasForeignKey("BuyerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Auction.LotsArchiveMicroservice.Domain.Entities.Lot", "Lot")
+                    b.HasOne("Auction.LotsArchive.Domain.Entities.Lot", "Lot")
                         .WithOne("RepurchasedLot")
-                        .HasForeignKey("Auction.LotsArchiveMicroservice.Domain.Entities.RepurchasedLot", "_lotId")
+                        .HasForeignKey("Auction.LotsArchive.Domain.Entities.RepurchasedLot", "_lotId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -311,41 +311,41 @@ namespace Auction.LotsArchive.Infrastructure.EntityFramework.Migrations
                     b.Navigation("Lot");
                 });
 
-            modelBuilder.Entity("Auction.LotsArchiveMicroservice.Domain.Entities.Seller", b =>
+            modelBuilder.Entity("Auction.LotsArchive.Domain.Entities.Seller", b =>
                 {
-                    b.HasOne("Auction.LotsArchiveMicroservice.Domain.Entities.Person", "PersonInfo")
+                    b.HasOne("Auction.LotsArchive.Domain.Entities.Person", "PersonInfo")
                         .WithOne("SellerInfo")
-                        .HasForeignKey("Auction.LotsArchiveMicroservice.Domain.Entities.Seller", "Id")
+                        .HasForeignKey("Auction.LotsArchive.Domain.Entities.Seller", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("PersonInfo");
                 });
 
-            modelBuilder.Entity("Auction.LotsArchiveMicroservice.Domain.Entities.WithdrawnLot", b =>
+            modelBuilder.Entity("Auction.LotsArchive.Domain.Entities.WithdrawnLot", b =>
                 {
-                    b.HasOne("Auction.LotsArchiveMicroservice.Domain.Entities.Lot", "Lot")
+                    b.HasOne("Auction.LotsArchive.Domain.Entities.Lot", "Lot")
                         .WithOne("WithdrawnLot")
-                        .HasForeignKey("Auction.LotsArchiveMicroservice.Domain.Entities.WithdrawnLot", "_lotId")
+                        .HasForeignKey("Auction.LotsArchive.Domain.Entities.WithdrawnLot", "_lotId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Lot");
                 });
 
-            modelBuilder.Entity("Auction.LotsArchiveMicroservice.Domain.Entities.Buyer", b =>
+            modelBuilder.Entity("Auction.LotsArchive.Domain.Entities.Buyer", b =>
                 {
                     b.Navigation("_boughtLots");
                 });
 
-            modelBuilder.Entity("Auction.LotsArchiveMicroservice.Domain.Entities.Lot", b =>
+            modelBuilder.Entity("Auction.LotsArchive.Domain.Entities.Lot", b =>
                 {
                     b.Navigation("RepurchasedLot");
 
                     b.Navigation("WithdrawnLot");
                 });
 
-            modelBuilder.Entity("Auction.LotsArchiveMicroservice.Domain.Entities.Person", b =>
+            modelBuilder.Entity("Auction.LotsArchive.Domain.Entities.Person", b =>
                 {
                     b.Navigation("BuyerInfo")
                         .IsRequired();
@@ -354,7 +354,7 @@ namespace Auction.LotsArchive.Infrastructure.EntityFramework.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Auction.LotsArchiveMicroservice.Domain.Entities.Seller", b =>
+            modelBuilder.Entity("Auction.LotsArchive.Domain.Entities.Seller", b =>
                 {
                     b.Navigation("_allLots");
                 });
