@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\L3\Auction.Common.Infrastructure.Repositories\Auction.Common.Infrastructure.Repositories.csproj" />
+    <ProjectReference Include="..\..\L2.Application\Auction.LotsArchive.Application.L2.Interfaces\Auction.LotsArchive.Application.L2.Interfaces.csproj" />
+    <ProjectReference Include="..\Auction.LotsArchive.Infrastructure.EntityFramework\Auction.LotsArchive.Infrastructure.EntityFramework.csproj" />
+  </ItemGroup>
+
+</Project>
