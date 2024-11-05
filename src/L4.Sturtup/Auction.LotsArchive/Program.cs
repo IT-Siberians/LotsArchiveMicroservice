@@ -81,6 +81,8 @@ builder.Services.AddTransient<IQueryPageHandler<GetSellerWithdrawnLotsQuery, Wit
 
 builder.Services.AddTransient<DbInitializer>();
 
+builder.Services.AddHealthChecks();
+
 builder.Services.AddAutoMapper(
     typeof(ApplicationMappingProfile),
     typeof(CommonPresentationMappingProfile),
@@ -94,6 +96,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.MapHealthChecks("health");
 
 app.UseAuthorization();
 
