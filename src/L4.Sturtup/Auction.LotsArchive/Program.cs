@@ -24,6 +24,8 @@ using Auction.LotsArchive.Presentation.Validation.Archiving;
 using Auction.LotsArchive.Presentation.WebApi.Mapping;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using HealthChecks.UI.Client;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
@@ -81,7 +83,10 @@ builder.Services.AddTransient<IQueryPageHandler<GetSellerWithdrawnLotsQuery, Wit
 
 builder.Services.AddTransient<DbInitializer>();
 
-builder.Services.AddHealthChecks();
+builder.Services.AddHealthChecks()
+    .AddNpgSql(dbConnectionString)
+    //.AddRabbitMQ(rabbitConnectionString: rmqConnectionString)
+    .AddDbContextCheck<ApplicationDbContext>();
 
 builder.Services.AddAutoMapper(
     typeof(ApplicationMappingProfile),
@@ -96,7 +101,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-app.MapHealthChecks("health");
+
+app.MapHealthChecks("health", new HealthCheckOptions
+{
+    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+});
 
 app.UseAuthorization();
 

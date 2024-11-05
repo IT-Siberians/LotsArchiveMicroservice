@@ -12,25 +12,10 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["L4.Sturtup/Auction.LotsArchive/Auction.LotsArchive.csproj", "L4.Sturtup/Auction.LotsArchive/"]
-COPY ["Common/L3/Auction.Common.Infrastructure.Initialization/Auction.Common.Infrastructure.Initialization.csproj", "Common/L3/Auction.Common.Infrastructure.Initialization/"]
-COPY ["Common/L3/Auction.Common.Infrastructure.Repositories/Auction.Common.Infrastructure.Repositories.csproj", "Common/L3/Auction.Common.Infrastructure.Repositories/"]
-COPY ["Common/L2/Auction.Common.Application.L2.Interfaces/Auction.Common.Application.L2.Interfaces.csproj", "Common/L2/Auction.Common.Application.L2.Interfaces/"]
-COPY ["Common/L2/Auction.Common.Application.L1.Models/Auction.Common.Application.L1.Models.csproj", "Common/L2/Auction.Common.Application.L1.Models/"]
-COPY ["Common/L1/Auction.Common.Domain/Auction.Common.Domain.csproj", "Common/L1/Auction.Common.Domain/"]
-COPY ["Common/L3/Auction.Common.Presentation.Validation/Auction.Common.Presentation.Validation.csproj", "Common/L3/Auction.Common.Presentation.Validation/"]
-COPY ["L3.Infrastructure/Auction.LotsArchive.Infrastructure.Repositories/Auction.LotsArchive.Infrastructure.Repositories.csproj", "L3.Infrastructure/Auction.LotsArchive.Infrastructure.Repositories/"]
-COPY ["L2.Application/Auction.LotsArchive.Application.L2.Interfaces/Auction.LotsArchive.Application.L2.Interfaces.csproj", "L2.Application/Auction.LotsArchive.Application.L2.Interfaces/"]
-COPY ["L2.Application/Auction.LotsArchive.Application.L1.Models/Auction.LotsArchive.Application.L1.Models.csproj", "L2.Application/Auction.LotsArchive.Application.L1.Models/"]
-COPY ["L1.Domain/Auction.LotsArchive.Domain/Auction.LotsArchive.Domain.csproj", "L1.Domain/Auction.LotsArchive.Domain/"]
-COPY ["L3.Infrastructure/Auction.LotsArchive.Infrastructure.EntityFramework/Auction.LotsArchive.Infrastructure.EntityFramework.csproj", "L3.Infrastructure/Auction.LotsArchive.Infrastructure.EntityFramework/"]
-COPY ["L3.Presentation/Auction.LotsArchive.Presentation.Validation/Auction.LotsArchive.Presentation.Validation.csproj", "L3.Presentation/Auction.LotsArchive.Presentation.Validation/"]
-COPY ["L3.Presentation/Auction.LotsArchive.Presentation.WebApi/Auction.LotsArchive.Presentation.WebApi.csproj", "L3.Presentation/Auction.LotsArchive.Presentation.WebApi/"]
-COPY ["Common/L3/Auction.Common.Presentation.WebApi/Auction.Common.Presentation.WebApi.csproj", "Common/L3/Auction.Common.Presentation.WebApi/"]
-COPY ["Common/L2/Auction.Common.Application.L3.Logic/Auction.Common.Application.L3.Logic.csproj", "Common/L2/Auction.Common.Application.L3.Logic/"]
-COPY ["L2.Application/Auction.LotsArchive.Application.L3.Logic/Auction.LotsArchive.Application.L3.Logic.csproj", "L2.Application/Auction.LotsArchive.Application.L3.Logic/"]
-RUN dotnet restore "./L4.Sturtup/Auction.LotsArchive/Auction.LotsArchive.csproj"
+
+# Копируем весь проект в рабочую директорию
 COPY . .
+
 WORKDIR "/src/L4.Sturtup/Auction.LotsArchive"
 RUN dotnet build "./Auction.LotsArchive.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
