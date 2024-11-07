@@ -1,6 +1,6 @@
 ﻿using Auction.Common.Application.L2.Interfaces.Answers;
 using Auction.Common.Application.L2.Interfaces.Handlers;
-using Auction.Common.Application.L3.Logic.Strings;
+using Auction.Common.Application.L2.Interfaces.Strings;
 using Auction.Common.Domain.ValueObjects.Numeric;
 using Auction.Common.Domain.ValueObjects.String;
 using Auction.LotsArchive.Application.L2.Interfaces.Commands.Archiving;
@@ -41,13 +41,13 @@ public class AddUnpurchasedLotHandler(
         var existingLot = await _lotsRepository.GetByIdAsync(command.Lot.Id, cancellationToken: cancellationToken);
         if (existingLot is not null)
         {
-            return BadAnswer.Error(CommonMessages.AlreadyExistsWithId, Names.Lot, command.Lot.Id);
+            return BadAnswer.Error(CommonMessages.AlreadyExistsWithId, CommonNames.Lot, command.Lot.Id);
         }
 
         var seller = await _sellersRepository.GetByIdAsync(command.Lot.SellerId, cancellationToken: cancellationToken);
         if (seller is null)
         {
-            return BadAnswer.EntityNotFound(CommonMessages.DoesntExistWithId, Names.Seller, command.Lot.SellerId);
+            return BadAnswer.EntityNotFound(CommonMessages.DoesntExistWithId, CommonNames.Seller, command.Lot.SellerId);
         }
 
         var title = new Title(command.Lot.Title);
@@ -70,6 +70,6 @@ public class AddUnpurchasedLotHandler(
         await _lotsRepository.AddAsync(lot, cancellationToken);
         await _lotsRepository.SaveChangesAsync(cancellationToken);
 
-        return new OkAnswer(CommonMessages.CreatedWithId, Names.Lot, command.Lot.Id);
+        return new OkAnswer(CommonMessages.CreatedWithId, CommonNames.Lot, command.Lot.Id);
     }
 }

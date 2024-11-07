@@ -1,6 +1,6 @@
 ﻿using Auction.Common.Application.L2.Interfaces.Answers;
 using Auction.Common.Application.L2.Interfaces.Handlers;
-using Auction.Common.Application.L3.Logic.Strings;
+using Auction.Common.Application.L2.Interfaces.Strings;
 using Auction.LotsArchive.Application.L1.Models.Copying;
 using Auction.LotsArchive.Application.L2.Interfaces.Commands.Copying;
 using Auction.LotsArchive.Application.L2.Interfaces.Repositories;
@@ -42,14 +42,14 @@ public class GetLotCopyHandler(
         var person = await _personsRepository.GetByIdAsync(query.SellerId, cancellationToken: cancellationToken);
         if (person is null)
         {
-            return BadAnswer<LotCopyModel>.EntityNotFound(CommonMessages.DoesntExistWithId, Names.User, query.SellerId);
+            return BadAnswer<LotCopyModel>.EntityNotFound(CommonMessages.DoesntExistWithId, CommonNames.User, query.SellerId);
         }
 
         var lot = await _lotsRepository.GetByIdAsync(query.LotId, includeProperties: "Seller", cancellationToken: cancellationToken);
 
         if (lot is null || lot.Seller.Id != person.Id)
         {
-            return BadAnswer<LotCopyModel>.EntityNotFound(CommonMessages.DoesntExistWithId, Names.Lot, query.LotId);
+            return BadAnswer<LotCopyModel>.EntityNotFound(CommonMessages.DoesntExistWithId, CommonNames.Lot, query.LotId);
         }
 
         var lotModel = _mapper.Map<LotCopyModel>(lot); ;
