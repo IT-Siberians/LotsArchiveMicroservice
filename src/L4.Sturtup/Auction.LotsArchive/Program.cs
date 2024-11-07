@@ -20,6 +20,7 @@ using Auction.LotsArchive.Application.L3.Logic.Handlers.Sellers;
 using Auction.LotsArchive.Application.L3.Logic.Mapping;
 using Auction.LotsArchive.Infrastructure.EntityFramework;
 using Auction.LotsArchive.Infrastructure.Repositories.EntityFramework;
+using Auction.LotsArchive.Presentation.GrpcApi.Services;
 using Auction.LotsArchive.Presentation.Validation.Archiving;
 using Auction.LotsArchive.Presentation.WebApi.Mapping;
 using FluentValidation;
@@ -93,7 +94,13 @@ builder.Services.AddAutoMapper(
     typeof(CommonWebApiMappingProfile),
     typeof(WebApiMappingProfile));
 
+builder.Services.AddGrpc();
+
 var app = builder.Build();
+
+// Configure the HTTP request pipeline
+app.MapGrpcService<CopyingService>();
+app.MapGet("/", () => "Communication with gRPC endpoints must be made through a gRPC client. To learn how to create a client, visit: https://go.microsoft.com/fwlink/?linkid=2086909");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
