@@ -58,9 +58,9 @@ public static class DbInitializationHelper
         Lot lot)
     {
         var repurchasedLot = new RepurchasedLot(
-        new Guid(guid),
-        dateTime,
-        lot,
+            new Guid(guid),
+            dateTime,
+            lot,
             buyerPerson.BuyerInfo,
             new Price(hammerPrice));
 

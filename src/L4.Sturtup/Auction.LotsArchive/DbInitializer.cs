@@ -24,7 +24,7 @@ public class DbInitializer(ApplicationDbContext dbContext) : IDbInitializer
     public async Task InitDatabaseAsync()
     {
         const string person1IdString = "11111111-5717-4562-b3fc-111100001111";
-        Guid person1Id = new Guid(person1IdString);
+        Guid person1Id = new(person1IdString);
 
         if (_dbContext.Persons.Any(p => p.Id == person1Id))
         {
@@ -43,7 +43,7 @@ public class DbInitializer(ApplicationDbContext dbContext) : IDbInitializer
         var person3 = await _dbContext.CreatePersonAsync("CarinC", "11111111-5717-4562-b3fc-111100003333");
         var person4 = await _dbContext.CreatePersonAsync("DenisD", "11111111-5717-4562-b3fc-111100004444");
 
-        var unpurchasedLot1 = await _dbContext.CreateLotAsync(
+        await _dbContext.CreateLotAsync(
             guid: "22222222-5717-4562-b3fc-222200001111",
             title: "Первый невыкупленный лот",
             description: "Описание лота",
@@ -53,7 +53,7 @@ public class DbInitializer(ApplicationDbContext dbContext) : IDbInitializer
             repurchasePrice: null,
             DateTime.UtcNow.Subtract(TimeSpan.FromDays(10)),
             DateTime.UtcNow.Subtract(TimeSpan.FromDays(8)));
-        var unpurchasedLot2 = await _dbContext.CreateLotAsync(
+        await _dbContext.CreateLotAsync(
             guid: "22222222-5717-4562-b3fc-222200002222",
             title: "Второй невыкупленный лот",
             description: "Описание лота",
@@ -63,7 +63,7 @@ public class DbInitializer(ApplicationDbContext dbContext) : IDbInitializer
             repurchasePrice: null,
             DateTime.UtcNow.Subtract(TimeSpan.FromDays(9)),
             DateTime.UtcNow.Subtract(TimeSpan.FromDays(7)));
-        var unpurchasedLot3 = await _dbContext.CreateLotAsync(
+        await _dbContext.CreateLotAsync(
             guid: "22222222-5717-4562-b3fc-222200003333",
             title: "Третий невыкупленный лот",
             description: "Описание лота",
@@ -73,7 +73,7 @@ public class DbInitializer(ApplicationDbContext dbContext) : IDbInitializer
             repurchasePrice: 3_000_000,
             DateTime.UtcNow.Subtract(TimeSpan.FromDays(8)),
             DateTime.UtcNow.Subtract(TimeSpan.FromDays(6)));
-        var unpurchasedLot4 = await _dbContext.CreateLotAsync(
+        await _dbContext.CreateLotAsync(
             guid: "22222222-5717-4562-b3fc-222200004444",
             title: "Четвёртый невыкупленный лот",
             description: "Описание лота",
@@ -84,7 +84,7 @@ public class DbInitializer(ApplicationDbContext dbContext) : IDbInitializer
             DateTime.UtcNow.Subtract(TimeSpan.FromDays(7)),
             DateTime.UtcNow.Subtract(TimeSpan.FromDays(5)));
 
-        var withdrawnLot1 = await _dbContext.CreateWithdrawnLotAsync(
+        await _dbContext.CreateWithdrawnLotAsync(
             guid: "44444444-5717-4562-b3fc-444400001111",
             dateTime: DateTime.UtcNow.Subtract(TimeSpan.FromDays(5)),
             lot: await _dbContext.CreateLotAsync(
@@ -97,7 +97,7 @@ public class DbInitializer(ApplicationDbContext dbContext) : IDbInitializer
                 repurchasePrice: null,
                 DateTime.UtcNow.Subtract(TimeSpan.FromDays(6)),
                 DateTime.UtcNow.Subtract(TimeSpan.FromDays(4))));
-        var withdrawnLot2 = await _dbContext.CreateWithdrawnLotAsync(
+        await _dbContext.CreateWithdrawnLotAsync(
             guid: "44444444-5717-4562-b3fc-444400002222",
             dateTime: DateTime.UtcNow.Subtract(TimeSpan.FromDays(5)),
             lot: await _dbContext.CreateLotAsync(
@@ -111,7 +111,7 @@ public class DbInitializer(ApplicationDbContext dbContext) : IDbInitializer
                 DateTime.UtcNow.Subtract(TimeSpan.FromDays(6)),
                 DateTime.UtcNow.Subtract(TimeSpan.FromDays(4))));
 
-        var repurchasedLot1 = await _dbContext.CreateRepurchasedLotAsync(
+        await _dbContext.CreateRepurchasedLotAsync(
             guid: "33333333-5717-4562-b3fc-333300001111",
             dateTime: DateTime.UtcNow.Subtract(TimeSpan.FromDays(5)),
             buyerPerson: person2,
@@ -126,7 +126,7 @@ public class DbInitializer(ApplicationDbContext dbContext) : IDbInitializer
                 repurchasePrice: null,
                 DateTime.UtcNow.Subtract(TimeSpan.FromDays(7)),
                 DateTime.UtcNow.Subtract(TimeSpan.FromDays(4))));
-        var repurchasedLot2 = await _dbContext.CreateRepurchasedLotAsync(
+        await _dbContext.CreateRepurchasedLotAsync(
             guid: "33333333-5717-4562-b3fc-333300002222",
             dateTime: DateTime.UtcNow.Subtract(TimeSpan.FromDays(4)),
             buyerPerson: person3,
@@ -141,7 +141,7 @@ public class DbInitializer(ApplicationDbContext dbContext) : IDbInitializer
                 repurchasePrice: 50_000,
                 DateTime.UtcNow.Subtract(TimeSpan.FromDays(8)),
                 DateTime.UtcNow.Subtract(TimeSpan.FromDays(3))));
-        var repurchasedLot3 = await _dbContext.CreateRepurchasedLotAsync(
+        await _dbContext.CreateRepurchasedLotAsync(
             guid: "33333333-5717-4562-b3fc-333300003333",
             dateTime: DateTime.UtcNow.Subtract(TimeSpan.FromDays(3)),
             buyerPerson: person4,
@@ -156,7 +156,7 @@ public class DbInitializer(ApplicationDbContext dbContext) : IDbInitializer
                 repurchasePrice: null,
                 DateTime.UtcNow.Subtract(TimeSpan.FromDays(5)),
                 DateTime.UtcNow.Subtract(TimeSpan.FromDays(1))));
-        var repurchasedLot4 = await _dbContext.CreateRepurchasedLotAsync(
+        await _dbContext.CreateRepurchasedLotAsync(
             guid: "33333333-5717-4562-b3fc-333300004444",
             dateTime: DateTime.UtcNow.Subtract(TimeSpan.FromDays(2)),
             buyerPerson: person3,

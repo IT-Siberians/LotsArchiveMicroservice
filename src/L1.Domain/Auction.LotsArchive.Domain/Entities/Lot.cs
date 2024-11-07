@@ -2,6 +2,7 @@
 using Auction.Common.Domain.EntitiesExceptions;
 using Auction.Common.Domain.ValueObjects.Numeric;
 using Auction.Common.Domain.ValueObjects.String;
+using Auction.LotsArchive.Domain.EntitiesExceptions;
 using System;
 
 namespace Auction.LotsArchive.Domain.Entities;
@@ -100,12 +101,7 @@ public class Lot : AbstractLot<Guid>
 
         if (repurchasedLot is not null && withdrawnLot is not null)
         {
-            throw new IncompatibleArgumentsValuesException<RepurchasedLot?, WithdrawnLot?>(
-                nameof(repurchasedLot),
-                repurchasedLot,
-                nameof(withdrawnLot),
-                withdrawnLot,
-                "Both arguments cannot be specified to be non-null at the same time");
+            throw new IncompatibleLotArgumentsValuesException(repurchasedLot, withdrawnLot);
         }
 
         Seller = seller ?? throw new ArgumentNullValueException(nameof(seller));
@@ -130,10 +126,7 @@ public class Lot : AbstractLot<Guid>
     {
         if (WithdrawnLot is not null)
         {
-            throw new InvalidSetOperationException<RepurchasedLot>(
-                nameof(repurchasedLot),
-                repurchasedLot,
-                "Cannot set RepurchasedLot value, because WithdrawnLot is set");
+            throw new InvalidSetRepurchasedLotException(repurchasedLot, WithdrawnLot);
         }
 
         RepurchasedLot = repurchasedLot ?? throw new ArgumentNullValueException(nameof(repurchasedLot));
@@ -145,10 +138,7 @@ public class Lot : AbstractLot<Guid>
     {
         if (RepurchasedLot is not null)
         {
-            throw new InvalidSetOperationException<WithdrawnLot>(
-                nameof(withdrawnLot),
-                withdrawnLot,
-                "Cannot set WithdrawnLot value, because RepurchasedLot is set");
+            throw new InvalidSetWithdrawnLotException(RepurchasedLot, withdrawnLot);
         }
 
         WithdrawnLot = withdrawnLot ?? throw new ArgumentNullValueException(nameof(withdrawnLot));

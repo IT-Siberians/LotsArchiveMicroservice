@@ -90,8 +90,8 @@ builder.Services.AddHealthChecks()
 
 builder.Services.AddAutoMapper(
     typeof(ApplicationMappingProfile),
-    typeof(CommonPresentationMappingProfile),
-    typeof(PresentationMappingProfile));
+    typeof(CommonWebApiMappingProfile),
+    typeof(WebApiMappingProfile));
 
 var app = builder.Build();
 
@@ -117,6 +117,5 @@ if (app.Environment.IsDevelopment())
 {
     await app.InitAsync<DbInitializer>();
 }
-
 
 app.Run();

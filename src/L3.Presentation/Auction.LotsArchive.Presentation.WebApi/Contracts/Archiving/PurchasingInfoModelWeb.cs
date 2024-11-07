@@ -2,7 +2,7 @@
 
 namespace Auction.LotsArchive.Presentation.WebApi.Contracts.Archiving;
 
-public record PurchasingInfoModelHttp(
+public record PurchasingInfoModelWeb(
     DateTime DateTime,
     Guid BuyerId,
     decimal HammerPrice);

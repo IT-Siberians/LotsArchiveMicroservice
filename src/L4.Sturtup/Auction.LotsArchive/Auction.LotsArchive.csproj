@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -16,6 +16,7 @@
     <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="8.0.1" />
     <PackageReference Include="FluentValidation" Version="11.10.0" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
+    <PackageReference Include="Grpc.AspNetCore" Version="2.66.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.10">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -31,6 +32,7 @@
     <ProjectReference Include="..\..\Common\L3\Auction.Common.Infrastructure.Repositories\Auction.Common.Infrastructure.Repositories.csproj" />
     <ProjectReference Include="..\..\Common\L3\Auction.Common.Presentation.Validation\Auction.Common.Presentation.Validation.csproj" />
     <ProjectReference Include="..\..\L3.Infrastructure\Auction.LotsArchive.Infrastructure.Repositories\Auction.LotsArchive.Infrastructure.Repositories.csproj" />
+    <ProjectReference Include="..\..\L3.Presentation\Auction.LotsArchive.Presentation.GrpcApi\Auction.LotsArchive.Presentation.GrpcApi.csproj" />
     <ProjectReference Include="..\..\L3.Presentation\Auction.LotsArchive.Presentation.Validation\Auction.LotsArchive.Presentation.Validation.csproj" />
     <ProjectReference Include="..\..\L3.Presentation\Auction.LotsArchive.Presentation.WebApi\Auction.LotsArchive.Presentation.WebApi.csproj" />
   </ItemGroup>

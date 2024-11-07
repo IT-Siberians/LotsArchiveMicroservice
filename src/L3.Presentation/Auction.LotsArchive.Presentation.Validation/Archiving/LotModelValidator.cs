@@ -15,8 +15,7 @@ public class LotModelValidator : AbstractValidator<LotModel>
         RuleFor(e => e.Title)
             .NotEmpty()
             .MinimumLength(Title.MinLength)
-            .MaximumLength(Title.MaxLength)
-            .Matches(Username.Pattern);
+            .MaximumLength(Title.MaxLength);
         RuleFor(e => e.Description)
             .NotEmpty()
             .MinimumLength(1);

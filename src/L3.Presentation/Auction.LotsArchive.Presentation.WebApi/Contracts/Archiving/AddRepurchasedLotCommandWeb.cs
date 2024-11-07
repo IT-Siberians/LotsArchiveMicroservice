@@ -2,5 +2,6 @@
 
 namespace Auction.LotsArchive.Presentation.WebApi.Contracts.Archiving;
 
-public record AddUnpurchasedLotCommandHttp(
-    LotModel Lot);
+public record AddRepurchasedLotCommandWeb(
+    LotModel Lot,
+    PurchasingInfoModel PurchasingInfo);

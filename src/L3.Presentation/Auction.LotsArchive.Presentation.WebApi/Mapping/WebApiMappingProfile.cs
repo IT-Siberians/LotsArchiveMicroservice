@@ -8,16 +8,16 @@ using AutoMapper;
 
 namespace Auction.LotsArchive.Presentation.WebApi.Mapping;
 
-public class PresentationMappingProfile : Profile
+public class WebApiMappingProfile : Profile
 {
-    public PresentationMappingProfile()
+    public WebApiMappingProfile()
     {
-        CreateMap<LotModelHttp, LotModel>();
-        CreateMap<PurchasingInfoModelHttp, PurchasingInfoModel>();
+        CreateMap<LotModelWeb, LotModel>();
+        CreateMap<PurchasingInfoModelWeb, PurchasingInfoModel>();
 
-        CreateMap<AddRepurchasedLotCommandHttp, AddRepurchasedLotCommand>();
-        CreateMap<AddUnpurchasedLotCommandHttp, AddUnpurchasedLotCommand>();
-        CreateMap<AddWithdrawnLotCommandHttp, AddWithdrawnLotCommand>();
+        CreateMap<AddRepurchasedLotCommandWeb, AddRepurchasedLotCommand>();
+        CreateMap<AddUnpurchasedLotCommandWeb, AddUnpurchasedLotCommand>();
+        CreateMap<AddWithdrawnLotCommandWeb, AddWithdrawnLotCommand>();
 
         CreateMap<GetItemsPageByIdQuery, GetBuyerBoughtLotsQuery>()
             .ConstructUsing(x => new GetBuyerBoughtLotsQuery(x.Id, x.Page, x.Filter));

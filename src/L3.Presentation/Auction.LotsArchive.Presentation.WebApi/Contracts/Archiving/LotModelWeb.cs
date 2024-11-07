@@ -3,7 +3,7 @@ using System;
 
 namespace Auction.LotsArchive.Presentation.WebApi.Contracts.Archiving;
 
-public record LotModelHttp(
+public record LotModelWeb(
     Guid Id,
     Guid SellerId,
     string Title,

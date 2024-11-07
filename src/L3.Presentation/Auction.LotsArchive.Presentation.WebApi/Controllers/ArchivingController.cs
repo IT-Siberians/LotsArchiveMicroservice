@@ -26,7 +26,7 @@ public class ArchivingController(
     [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(BadValues))]
     [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(BadAnswer))]
     public Task<ActionResult<IAnswer>> AddRepurchasedLot(
-        [FromBody] AddRepurchasedLotCommandHttp command,
+        [FromBody] AddRepurchasedLotCommandWeb command,
         [FromServices] ICommandHandler<AddRepurchasedLotCommand> handler,
         [FromServices] IValidator<AddRepurchasedLotCommand> validator,
         CancellationToken cancellationToken)
@@ -45,7 +45,7 @@ public class ArchivingController(
     [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(BadValues))]
     [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(BadAnswer))]
     public Task<ActionResult<IAnswer>> AddUnpurchasedLot(
-        [FromBody] AddUnpurchasedLotCommandHttp command,
+        [FromBody] AddUnpurchasedLotCommandWeb command,
         [FromServices] ICommandHandler<AddUnpurchasedLotCommand> handler,
         [FromServices] IValidator<AddUnpurchasedLotCommand> validator,
         CancellationToken cancellationToken)
@@ -64,7 +64,7 @@ public class ArchivingController(
     [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(BadValues))]
     [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(BadAnswer))]
     public Task<ActionResult<IAnswer>> AddWithdrawnLot(
-        [FromBody] AddWithdrawnLotCommandHttp command,
+        [FromBody] AddWithdrawnLotCommandWeb command,
         [FromServices] ICommandHandler<AddWithdrawnLotCommand> handler,
         [FromServices] IValidator<AddWithdrawnLotCommand> validator,
         CancellationToken cancellationToken)
