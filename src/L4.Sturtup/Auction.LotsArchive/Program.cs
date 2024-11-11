@@ -21,21 +21,32 @@ using Auction.LotsArchive.Infrastructure.DbInitialization;
 using Auction.LotsArchive.Infrastructure.EntityFramework;
 using Auction.LotsArchive.Infrastructure.Repositories.EntityFramework;
 using Auction.LotsArchive.Presentation.GrpcApi.Services;
+using Auction.LotsArchive.Presentation.MassTransit.Persons;
 using Auction.LotsArchive.Presentation.Validation.Archiving;
 using Auction.LotsArchive.Presentation.WebApi.Mapping;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using HealthChecks.UI.Client;
+using MassTransit;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using Otus.QueueDto.User;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Logging.ClearProviders().AddConsole();
 
 var dbConnectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 if (string.IsNullOrWhiteSpace(dbConnectionString))
 {
     throw new InvalidOperationException("Connection string for ApplicationDbContext is not configured.");
+}
+
+var rmqConnectionString = builder.Configuration.GetConnectionString("RabbitMqConfig");
+if (string.IsNullOrEmpty(rmqConnectionString))
+{
+    throw new InvalidOperationException("Connection string for RabbitMQ is not configured.");
 }
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -86,7 +97,7 @@ builder.Services.AddTransient<DbInitializer>();
 
 builder.Services.AddHealthChecks()
     .AddNpgSql(dbConnectionString)
-    //.AddRabbitMQ(rabbitConnectionString: rmqConnectionString)
+    .AddRabbitMQ(rabbitConnectionString: rmqConnectionString)
     .AddDbContextCheck<ApplicationDbContext>();
 
 builder.Services.AddAutoMapper(
@@ -95,6 +106,25 @@ builder.Services.AddAutoMapper(
     typeof(WebApiMappingProfile));
 
 builder.Services.AddGrpc();
+
+builder.Services.AddMassTransit(x =>
+{
+    x.AddConsumer<CreateUserConsumer>();
+
+    x.UsingRabbitMq((context, cfg) =>
+    {
+        cfg.Host(new Uri(rmqConnectionString));
+        cfg.ReceiveEndpoint($"{nameof(CreateUserEvent)}.Archive", e =>
+        {
+            e.ConfigureConsumer<CreateUserConsumer>(context);
+        });
+        cfg.ConfigureEndpoints(context);
+        cfg.UseMessageRetry(r =>
+        {
+            r.Interval(3, TimeSpan.FromSeconds(10));
+        });
+    });
+});
 
 var app = builder.Build();
 
