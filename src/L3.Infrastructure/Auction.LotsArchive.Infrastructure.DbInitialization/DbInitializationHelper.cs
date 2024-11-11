@@ -2,8 +2,10 @@
 using Auction.Common.Domain.ValueObjects.String;
 using Auction.LotsArchive.Domain.Entities;
 using Auction.LotsArchive.Infrastructure.EntityFramework;
+using System;
+using System.Threading.Tasks;
 
-namespace Auction.LotsArchive;
+namespace Auction.LotsArchive.Infrastructure.DbInitialization;
 
 public static class DbInitializationHelper
 {

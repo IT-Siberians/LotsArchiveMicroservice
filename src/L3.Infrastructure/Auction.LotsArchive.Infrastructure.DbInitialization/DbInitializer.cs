@@ -1,7 +1,10 @@
-﻿using Auction.Common.Presentation.Initialization;
+﻿using Auction.Common.Infrastructure.DbInitialization;
 using Auction.LotsArchive.Infrastructure.EntityFramework;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace Auction.LotsArchive;
+namespace Auction.LotsArchive.Infrastructure.DbInitialization;
 
 public class DbInitializer(ApplicationDbContext dbContext) : IDbInitializer
 {

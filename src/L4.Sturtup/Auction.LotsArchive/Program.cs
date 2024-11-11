@@ -1,9 +1,8 @@
 using Auction.Common.Application.L2.Interfaces.Commands;
 using Auction.Common.Application.L2.Interfaces.Handlers;
-using Auction.Common.Presentation.Initialization;
+using Auction.Common.Infrastructure.DbInitialization;
 using Auction.Common.Presentation.Mapping;
 using Auction.Common.Presentation.Validation;
-using Auction.LotsArchive;
 using Auction.LotsArchive.Application.L1.Models.Buyers;
 using Auction.LotsArchive.Application.L1.Models.Copying;
 using Auction.LotsArchive.Application.L1.Models.Sellers;
@@ -18,6 +17,7 @@ using Auction.LotsArchive.Application.L3.Logic.Handlers.Copying;
 using Auction.LotsArchive.Application.L3.Logic.Handlers.Persons;
 using Auction.LotsArchive.Application.L3.Logic.Handlers.Sellers;
 using Auction.LotsArchive.Application.L3.Logic.Mapping;
+using Auction.LotsArchive.Infrastructure.DbInitialization;
 using Auction.LotsArchive.Infrastructure.EntityFramework;
 using Auction.LotsArchive.Infrastructure.Repositories.EntityFramework;
 using Auction.LotsArchive.Presentation.GrpcApi.Services;
