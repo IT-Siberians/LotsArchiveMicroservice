@@ -21,6 +21,7 @@ using Auction.LotsArchive.Infrastructure.DbInitialization;
 using Auction.LotsArchive.Infrastructure.EntityFramework;
 using Auction.LotsArchive.Infrastructure.Repositories.EntityFramework;
 using Auction.LotsArchive.Presentation.GrpcApi.Services;
+using Auction.LotsArchive.Presentation.MassTransit.Lots;
 using Auction.LotsArchive.Presentation.MassTransit.Persons;
 using Auction.LotsArchive.Presentation.Validation.Archiving;
 using Auction.LotsArchive.Presentation.WebApi.Mapping;
@@ -31,6 +32,7 @@ using MassTransit;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using Otus.QueueDto.Lot;
 using Otus.QueueDto.User;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -62,7 +64,7 @@ builder.Services.AddSwaggerGen(options =>
     options.SwaggerDoc("v1", new OpenApiInfo
     {
         Version = "v1",
-        Title = "Auction Lots Archive API",
+        Title = "Auction Archive API",
         Description = "API of the lot archive microservice for viewing information on completed lots"
     }));
 
@@ -110,14 +112,26 @@ builder.Services.AddGrpc();
 builder.Services.AddMassTransit(x =>
 {
     x.AddConsumer<CreateUserConsumer>();
+    x.AddConsumer<CancelLotConsumer>();
+    x.AddConsumer<WonLotConsumer>();
 
     x.UsingRabbitMq((context, cfg) =>
     {
         cfg.Host(new Uri(rmqConnectionString));
+
         cfg.ReceiveEndpoint($"{nameof(CreateUserEvent)}.Archive", e =>
         {
             e.ConfigureConsumer<CreateUserConsumer>(context);
         });
+        cfg.ReceiveEndpoint($"{nameof(CancelLotEvent)}.Archive", e =>
+        {
+            e.ConfigureConsumer<CancelLotConsumer>(context);
+        });
+        cfg.ReceiveEndpoint($"{nameof(WonLotEvent)}.Archive", e =>
+        {
+            e.ConfigureConsumer<WonLotConsumer>(context);
+        });
+
         cfg.ConfigureEndpoints(context);
         cfg.UseMessageRetry(r =>
         {
