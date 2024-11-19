@@ -31,14 +31,16 @@ public class GetSellerWithdrawnLotsHandler
                 useTracking: false)
     {
 #pragma warning disable CA1862 // Use the 'StringComparison' method overloads to perform case-insensitive string comparisons
-        Filter = e => Query == null ||
-                        e.Lot.Seller.Id == Query.SellerId
-                        && (Query.Filter == null || Query.Filter.With == null || Query.Filter.With == ""
+        Filters =
+        [
+            e => Query == null || e.Lot.Seller.Id == Query.SellerId,
+            e => Query == null || Query.Filter == null || Query.Filter.With == null || Query.Filter.With == ""
                                                         || e.Lot.Title.Value.ToLower().Contains(Query.Filter.With)
-                                                        || e.Lot.Description.Value.ToLower().Contains(Query.Filter.With))
-                        && (Query.Filter == null || Query.Filter.Without == null || Query.Filter.Without == ""
+                                                        || e.Lot.Description.Value.ToLower().Contains(Query.Filter.With),
+            e => Query == null || Query.Filter == null || Query.Filter.Without == null || Query.Filter.Without == ""
                                                         || (!e.Lot.Title.Value.ToLower().Contains(Query.Filter.Without)
-                                                                && !e.Lot.Description.Value.ToLower().Contains(Query.Filter.Without)));
+                                                            && !e.Lot.Description.Value.ToLower().Contains(Query.Filter.Without))
+        ];
 #pragma warning restore CA1862 // Use the 'StringComparison' method overloads to perform case-insensitive string comparisons
     }
 }
